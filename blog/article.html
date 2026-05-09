@@ -290,10 +290,6 @@
     document.title = `${article.title} - 階段・石段体験ブログ - 段旅`;
     document.getElementById('bc-title').textContent = article.title;
 
-    // OGP動的書き換え
-    document.getElementById('og-title').setAttribute('content', article.title + ' - 段旅 StepJourney');
-    document.getElementById('og-desc').setAttribute('content', article.summary || '');
-
     document.getElementById('article-content').innerHTML = `
       <div class="article-hdr">
         <div class="article-meta">

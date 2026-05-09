@@ -3,17 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>段旅 StepJourney ? 全国の石段スポットを探す</title>
-
-<!-- OGP -->
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="段旅 StepJourney">
-<meta property="og:title" content="段旅 StepJourney ? 全国の石段スポットを探す">
-<meta property="og:description" content="全国に点在する段数の多い階段スポットを紹介しています。石段を登り、その場所の空気と景色を感じてください。">
-<meta property="og:url" content="https://stepjourney.github.io/stepjourney/stairs/">
-<meta property="og:image" content="https://stepjourney.github.io/stepjourney/stairs/images/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@あなたのXアカウント">
+<title>段旅 StepJourney - 全国の階段・石段スポットを探す</title>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FC6FWPNHRK"></script>
 <script>
@@ -158,22 +148,28 @@
   }
   .search-btn:active { opacity: 0.85; }
 
-  /* 注意文 */
+  .logo-link { text-decoration: none; display: block; }
+
+  /* 注意文（強調版） */
   .notice-bar {
     margin: 16px 12px 0;
-    background: var(--ai-light);
-    border-left: 3px solid var(--ai-mid);
+    background: #fff8e8;
+    border-left: 3px solid #e6a817;
     padding: 10px 13px;
     font-size: 12px;
-    color: var(--text-mid);
+    color: #6b4c0a;
     line-height: 1.65;
+    font-weight: 500;
   }
 
-  /* おすすめラベル */
+  /* 結果ラベル */
   .rec-label {
     margin: 16px 12px 10px;
-    font-size: 13px;
-    color: var(--text-mute);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-mid);
+    border-left: 3px solid var(--gold);
+    padding-left: 9px;
   }
 
   /* スポットカード */
@@ -298,8 +294,10 @@
 
 <header>
   <div>
-    <div class="logo">段旅</div>
-    <div class="logo-en">StepJourney</div>
+    <a href="index.html" class="logo-link">
+      <div class="logo">段旅</div>
+      <div class="logo-en">StepJourney</div>
+    </a>
   </div>
   <nav>
     <a href="../blog/index.html">階段・石段体験ブログ</a>
@@ -343,25 +341,18 @@
   検索中...<br><span style="font-size:12px; font-weight:400; opacity:0.8;">検索結果は下に表示されます</span>
 </div>
 
-<div class="notice-bar">情報が古い可能性があります。ご自身でも情報を確認し、現地および周りの方に配慮し、安全な旅をしてください。</div>
+<div class="notice-bar">?? 情報が古い可能性があります。ご自身でも情報を確認し、現地および周りの方に配慮し、安全な旅をしてください。</div>
 
-<div class="rec-label" id="result-label">おすすめ階段スポットを5つ表示しています♪</div>
+<div class="rec-label" id="result-label">おすすめ階段・石段スポットを5つ表示しています♪</div>
 
 <div id="results"></div>
 
-<div class="blog-section">
-  <div class="section-ttl">石段体験ブログ 最新記事</div>
-  <a class="blog-card" href="../blog/index.html">
-    <div class="blog-card-title">1,800段を登って気づいた、石段の旅の魅力</div>
-    <div class="blog-card-meta">2025年4月20日 ・ 体験談</div>
-  </a>
-  <a class="blog-card" href="../blog/index.html">
-    <div class="blog-card-title">関西エリアのおすすめ石段スポット5選【2025年版】</div>
-    <div class="blog-card-meta">2025年4月12日 ・ まとめ</div>
-  </a>
+<div class="blog-section" id="blog-section" style="display:none;">
+  <div class="section-ttl">階段・石段体験ブログ 最新記事</div>
+  <div id="blog-cards"></div>
 </div>
 
-<footer>c 2025 段旅 StepJourney</footer>
+<footer>&copy; 2026 段旅 StepJourney</footer>
 
 <script>
   const DATA_URL = 'data/spots.json';
@@ -498,6 +489,31 @@
     });
     renderSpots(results);
   }
+
+  // ブログ最新記事を動的読み込み（articles.jsonがない・空なら欄ごと非表示）
+  function formatDate(dateStr) {
+    const [y, m, d] = dateStr.split('-');
+    return `${y}年${parseInt(m)}月${parseInt(d)}日`;
+  }
+
+  function escapeHtml(str) {
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+              .replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+  }
+
+  fetch('../blog/data/articles.json')
+    .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+    .then(articles => {
+      if (!articles || articles.length === 0) return;
+      const latest = articles.slice(0, 2);
+      document.getElementById('blog-cards').innerHTML = latest.map(a => `
+        <a class="blog-card" href="../blog/article.html?id=${escapeHtml(a.id)}">
+          <div class="blog-card-title">${escapeHtml(a.title)}</div>
+          <div class="blog-card-meta">${formatDate(a.date)} ・ ${escapeHtml(a.category)}</div>
+        </a>`).join('');
+      document.getElementById('blog-section').style.display = 'block';
+    })
+    .catch(() => { /* articles.jsonがない場合は欄を表示しない */ });
 
   fetch(DATA_URL)
     .then(r => r.json())

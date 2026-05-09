@@ -3,17 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>スポット詳細 ? 段旅 StepJourney</title>
-
-<!-- OGP（スポット名・段数はJSで動的に書き換え） -->
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="段旅 StepJourney">
-<meta property="og:title" id="og-title" content="段旅 StepJourney ? 全国の石段スポットを探す">
-<meta property="og:description" id="og-desc" content="全国に点在する段数の多い階段スポットを紹介しています。">
-<meta property="og:url" content="">
-<meta property="og:image" content="https://stepjourney.github.io/stepjourney/stairs/images/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@あなたのXアカウント">
+<title>スポット詳細 - 段旅 StepJourney</title>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FC6FWPNHRK"></script>
 <script>
@@ -62,6 +52,7 @@
   }
   .logo { color: #fff; font-size: 20px; font-weight: 600; letter-spacing: 0.04em; }
   .logo-en { color: rgba(255,255,255,0.5); font-size: 10px; font-weight: 400; letter-spacing: 0.1em; margin-top: 1px; }
+  .logo-link { text-decoration: none; display: block; }
   header nav { display: flex; gap: 12px; align-items: center; }
   header nav a { color: rgba(255,255,255,0.8); font-size: 12px; text-decoration: none; }
   .lang-btn {
@@ -264,26 +255,28 @@
 
 <header>
   <div>
-    <div class="logo">段旅</div>
-    <div class="logo-en">StepJourney</div>
+    <a href="index.html" class="logo-link">
+      <div class="logo">段旅</div>
+      <div class="logo-en">StepJourney</div>
+    </a>
   </div>
   <nav>
-    <a href="../blog/index.html">石段体験ブログ</a>
+    <a href="../blog/index.html">階段・石段体験ブログ</a>
     <button class="lang-btn" onclick="alert('英語版は準備中です。')">EN</button>
   </nav>
 </header>
 
 <div class="breadcrumb">
   <a href="index.html">段旅</a>
-  <span class="breadcrumb-sep">?</span>
+  <span class="breadcrumb-sep">&gt;</span>
   <span class="breadcrumb-current" id="bc-name">読み込み中...</span>
 </div>
 
 <div id="spot-content"><div class="loading">読み込み中...</div></div>
 
-<a class="back-btn" href="javascript:history.back()">← 検索結果に戻る</a>
+<a class="back-btn" href="javascript:history.back()">&#8592; 検索結果に戻る</a>
 
-<footer>c 2025 段旅 StepJourney</footer>
+<footer>&copy; 2026 段旅 StepJourney</footer>
 
 <script>
   function getParam(key) {

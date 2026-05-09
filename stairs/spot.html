@@ -297,14 +297,6 @@
     document.title = `${spot.name} ? 段旅 StepJourney`;
     document.getElementById('bc-name').textContent = spot.name;
 
-    // OGP動的書き換え
-    document.getElementById('og-title').setAttribute('content', `${spot.name}（${formatSteps(spot.steps)}段）? 段旅 StepJourney`);
-    document.getElementById('og-desc').setAttribute('content', `${spot.prefecture}にある${formatSteps(spot.steps)}段の石段スポット。${spot.caution || ''}`);
-    if (spot.images && spot.images.length > 0) {
-      document.querySelector('meta[property="og:image"]').setAttribute('content',
-        `https://ユーザー名.github.io/stepjourney/stairs/images/${spot.images[0]}`);
-    }
-
     const imgMain = (spot.images && spot.images.length > 0)
       ? `<img src="images/${spot.images[0]}" alt="${spot.name} メイン写真" id="main-img">`
       : `<div class="photo-placeholder">写真準備中</div>`;

@@ -302,18 +302,18 @@
     <div class="logo-en">StepJourney</div>
   </div>
   <nav>
-    <a href="../blog/index.html">石段体験ブログ</a>
+    <a href="../blog/index.html">階段・石段体験ブログ</a>
     <button class="lang-btn" onclick="alert('英語版は準備中です。')">EN</button>
   </nav>
 </header>
 
 <div class="hero">
-  <h1>段と出会う旅へ。<br><em>全国の石段を、探そう。</em></h1>
-  <p>全国に点在する段数の多い階段スポットを紹介しています。<br>石段を登り、その場所の空気と景色を感じてください。</p>
+  <h1>段と出会う旅へ。<br><em>全国の段を、探そう。</em></h1>
+  <p>全国に点在する段数の多い階段・石段スポットをご紹介！<br>現地を訪れ、その場所の空気と景色を感じてください。</p>
 </div>
 
 <div class="search-panel">
-  <div class="search-panel-title">階段スポットを探す</div>
+  <div class="search-panel-title">階段・石段スポットを探す</div>
 
   <div class="srow">
     <label for="sel-pref">都道府県から探す</label>
@@ -331,7 +331,16 @@
     <label for="inp-free">フリーワードから探す</label>
     <input id="inp-free" type="text" placeholder="都道府県や駅名を入力" autocomplete="off">
   </div>
-  <button class="search-btn" id="btn-search">この条件で探す</button>
+</div>
+
+<!-- 検索中ポップアップ -->
+<div id="search-popup" style="
+  display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%);
+  background:rgba(27,58,107,0.93); color:#fff; font-size:14px; font-weight:600;
+  padding:16px 28px; border-radius:12px; z-index:999; letter-spacing:0.03em;
+  box-shadow:0 4px 24px rgba(0,0,0,0.25); text-align:center; line-height:1.6;
+">
+  検索中...<br><span style="font-size:12px; font-weight:400; opacity:0.8;">検索結果は下に表示されます</span>
 </div>
 
 <div class="notice-bar">情報が古い可能性があります。ご自身でも情報を確認し、現地および周りの方に配慮し、安全な旅をしてください。</div>
@@ -449,6 +458,13 @@
     return a.slice(0, n);
   }
 
+  function showPopup() {
+    const popup = document.getElementById('search-popup');
+    popup.style.display = 'block';
+    // 検索は瞬時に終わるが、最低400ms表示してUXを確保
+    setTimeout(() => { popup.style.display = 'none'; }, 400);
+  }
+
   function doSearch() {
     const pref = document.getElementById('sel-pref').value;
     const steps = document.getElementById('sel-steps').value;
@@ -459,17 +475,16 @@
     const active = allSpots.filter(s => s.disabled === 0);
 
     if (!pref && !steps && !station && !free) {
-      label.textContent = 'おすすめ階段スポットを5つ表示しています♪';
+      label.textContent = 'おすすめ階段・石段スポットを5つ表示しています♪';
       renderSpots(randomSample(active, 5));
       return;
     }
 
+    showPopup();
     label.textContent = '検索結果';
     const results = active.filter(s => {
       if (pref && s.prefecture !== pref) return false;
-      // steps は数値でも文字列でも String() に統一して比較
       if (steps && String(s.steps) !== steps) return false;
-      // 最寄り駅：access形式で「路線 駅名」ラベルと比較
       if (station) {
         const labels = (s.access || []).map(a => `${a.line.join('・')} ${a.station}`);
         if (!labels.includes(station)) return false;
@@ -496,8 +511,20 @@
       document.getElementById('results').innerHTML = '<div class="no-result">データの読み込みに失敗しました。</div>';
     });
 
-  document.getElementById('btn-search').addEventListener('click', doSearch);
-  document.getElementById('inp-free').addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); });
+  // プルダウン変更で自動検索（AND検索）
+  ['sel-pref', 'sel-steps', 'sel-station'].forEach(id => {
+    document.getElementById(id).addEventListener('change', doSearch);
+  });
+  // フリーワードはEnterキーで検索
+  document.getElementById('inp-free').addEventListener('keydown', e => {
+    if (e.key === 'Enter') doSearch();
+  });
+  // フリーワードは入力が止まって500ms後に自動検索
+  let freeTimer;
+  document.getElementById('inp-free').addEventListener('input', () => {
+    clearTimeout(freeTimer);
+    freeTimer = setTimeout(doSearch, 500);
+  });
 </script>
 </body>
 </html>

@@ -1,1 +1,418 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スポット詳細 ? 段旅 StepJourney</title>
 
+<!-- OGP（スポット名・段数はJSで動的に書き換え） -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="段旅 StepJourney">
+<meta property="og:title" id="og-title" content="段旅 StepJourney ? 全国の石段スポットを探す">
+<meta property="og:description" id="og-desc" content="全国に点在する段数の多い階段スポットを紹介しています。">
+<meta property="og:url" content="">
+<meta property="og:image" content="https://ユーザー名.github.io/stepjourney/stairs/images/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@あなたのXアカウント">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FC6FWPNHRK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FC6FWPNHRK');
+</script>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ai:        #1b3a6b;
+    --ai-mid:    #2d5a9e;
+    --ai-light:  #e8eef7;
+    --stone-bg:  #f7f5f0;
+    --stone-bd:  #ddd8d0;
+    --gold:      #b8962e;
+    --text-dark: #1a1a2e;
+    --text-mid:  #4a4a6a;
+    --text-mute: #8888aa;
+    --white:     #ffffff;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+    background: var(--stone-bg);
+    color: var(--text-dark);
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+  }
+
+  header {
+    background: var(--ai);
+    padding: 14px 16px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo { color: #fff; font-size: 20px; font-weight: 600; letter-spacing: 0.04em; }
+  .logo-en { color: rgba(255,255,255,0.5); font-size: 10px; font-weight: 400; letter-spacing: 0.1em; margin-top: 1px; }
+  header nav { display: flex; gap: 12px; align-items: center; }
+  header nav a { color: rgba(255,255,255,0.8); font-size: 12px; text-decoration: none; }
+  .lang-btn {
+    font-size: 11px;
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 5px;
+    padding: 3px 9px;
+    color: rgba(255,255,255,0.8);
+    background: transparent;
+    cursor: pointer;
+  }
+
+  /* パンくず */
+  .breadcrumb {
+    padding: 10px 16px;
+    font-size: 12px;
+    color: var(--text-mute);
+    background: var(--stone-bg);
+    border-bottom: 1px solid var(--stone-bd);
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .breadcrumb a { color: var(--text-mute); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--text-mid); }
+  .breadcrumb-sep { color: #ccc; }
+  .breadcrumb-current { color: var(--text-mid); }
+
+  /* スポットヘッダー */
+  .spot-hdr {
+    background: var(--ai);
+    padding: 22px 16px 20px;
+  }
+  .spot-hdr-name {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+  .spot-hdr-steps {
+    color: #c8d8f0;
+    font-size: 40px;
+    font-weight: 700;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+  .spot-hdr-unit {
+    font-size: 16px;
+    color: rgba(255,255,255,0.45);
+    font-weight: 400;
+  }
+
+  /* 写真エリア */
+  .photo-main {
+    background: var(--ai-mid);
+    width: 100%;
+    max-height: 260px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .photo-main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .photo-placeholder {
+    color: rgba(255,255,255,0.35);
+    font-size: 13px;
+    padding: 60px 0;
+  }
+  .photo-thumbs {
+    display: flex;
+    gap: 6px;
+    padding: 8px 12px;
+    background: #ede9e2;
+    overflow-x: auto;
+  }
+  .photo-thumb {
+    flex-shrink: 0;
+    width: 72px;
+    height: 56px;
+    border-radius: 7px;
+    overflow: hidden;
+    background: #ccc;
+    cursor: pointer;
+    border: 2px solid transparent;
+  }
+  .photo-thumb.active { border-color: var(--ai); }
+  .photo-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* セクション共通 */
+  .section {
+    background: var(--white);
+    margin: 12px 12px 0;
+    border-radius: 13px;
+    border: 1px solid var(--stone-bd);
+    padding: 16px;
+  }
+  .section-ttl {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-mid);
+    letter-spacing: 0.06em;
+    margin-bottom: 12px;
+    border-left: 3px solid var(--gold);
+    padding-left: 9px;
+  }
+
+  /* 基本情報テーブル */
+  .info-row {
+    display: flex;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--stone-bd);
+    font-size: 14px;
+  }
+  .info-row:last-child { border-bottom: none; }
+  .info-label {
+    color: var(--text-mute);
+    font-size: 12px;
+    min-width: 76px;
+    flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .info-value { color: var(--text-dark); flex: 1; line-height: 1.65; }
+  .info-value a {
+    color: var(--ai-mid);
+    font-size: 13px;
+    word-break: break-all;
+  }
+  .station-item { margin-bottom: 7px; }
+  .station-item:last-child { margin-bottom: 0; }
+  .station-name { font-weight: 600; display: block; }
+  .station-access { font-size: 12px; color: var(--text-mute); display: block; margin-top: 1px; }
+
+  /* 注意情報 */
+  .caution-box {
+    background: var(--ai-light);
+    border-left: 3px solid var(--ai-mid);
+    padding: 11px 13px;
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+
+  /* 更新履歴 */
+  .upd-row {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--stone-bd);
+    font-size: 13px;
+  }
+  .upd-row:last-child { border-bottom: none; }
+  .upd-v { color: #ccc; min-width: 26px; font-size: 11px; }
+  .upd-d { color: var(--text-mute); min-width: 88px; font-size: 12px; }
+  .upd-n { color: var(--text-dark); }
+
+  /* 戻るボタン */
+  .back-btn {
+    display: block;
+    margin: 14px 12px 24px;
+    text-align: center;
+    padding: 12px;
+    border: 1px solid var(--stone-bd);
+    border-radius: 10px;
+    font-size: 14px;
+    color: var(--text-mid);
+    text-decoration: none;
+    background: var(--white);
+    cursor: pointer;
+  }
+  .back-btn:active { opacity: 0.8; }
+
+  footer {
+    background: var(--ai);
+    padding: 18px 16px;
+    text-align: center;
+    font-size: 11px;
+    color: rgba(255,255,255,0.35);
+  }
+
+  /* エラー・ローディング */
+  .loading {
+    text-align: center;
+    color: var(--text-mute);
+    padding: 60px 16px;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="logo">段旅</div>
+    <div class="logo-en">StepJourney</div>
+  </div>
+  <nav>
+    <a href="../blog/index.html">石段体験ブログ</a>
+    <button class="lang-btn" onclick="alert('英語版は準備中です。')">EN</button>
+  </nav>
+</header>
+
+<div class="breadcrumb">
+  <a href="index.html">段旅</a>
+  <span class="breadcrumb-sep">?</span>
+  <span class="breadcrumb-current" id="bc-name">読み込み中...</span>
+</div>
+
+<div id="spot-content"><div class="loading">読み込み中...</div></div>
+
+<a class="back-btn" href="javascript:history.back()">← 検索結果に戻る</a>
+
+<footer>c 2025 段旅 StepJourney</footer>
+
+<script>
+  function getParam(key) {
+    return new URLSearchParams(location.search).get(key);
+  }
+
+  function formatDate(dateStr) {
+    const [y, m, d] = dateStr.split('-');
+    return `${y}年${parseInt(m)}月${parseInt(d)}日`;
+  }
+
+  function formatSteps(val) {
+    if (typeof val === 'number') return val.toLocaleString('ja-JP');
+    return String(val);
+  }
+
+  function render(spot) {
+    document.title = `${spot.name} ? 段旅 StepJourney`;
+    document.getElementById('bc-name').textContent = spot.name;
+
+    // OGP動的書き換え
+    document.getElementById('og-title').setAttribute('content', `${spot.name}（${spot.steps.toLocaleString('ja-JP')}段）? 段旅 StepJourney`);
+    document.getElementById('og-desc').setAttribute('content', `${spot.address}にある${spot.steps.toLocaleString('ja-JP')}段の石段スポット。${spot.caution || ''}`);
+    if (spot.images && spot.images.length > 0) {
+      document.querySelector('meta[property="og:image"]').setAttribute('content',
+        `https://ユーザー名.github.io/stepjourney/stairs/images/${spot.images[0]}`);
+    }
+
+    const imgMain = (spot.images && spot.images.length > 0)
+      ? `<img src="images/${spot.images[0]}" alt="${spot.name} メイン写真" id="main-img">`
+      : `<div class="photo-placeholder">写真準備中</div>`;
+
+    const thumbsHTML = (spot.images && spot.images.length > 1)
+      ? `<div class="photo-thumbs">${spot.images.map((img, i) =>
+          `<div class="photo-thumb${i === 0 ? ' active' : ''}" data-src="images/${img}">
+            <img src="images/${img}" alt="写真${i+1}">
+          </div>`).join('')}</div>`
+      : '';
+
+    const stationsHTML = spot.stations.map(st =>
+      `<div class="station-item">
+        <span class="station-name">${st.name}</span>
+        <span class="station-access">${st.access}</span>
+      </div>`
+    ).join('');
+
+    const officialHTML = spot.official_url
+      ? `<div class="info-row">
+          <div class="info-label">公式サイト</div>
+          <div class="info-value"><a href="${spot.official_url}" target="_blank" rel="noopener">${spot.official_url}</a></div>
+        </div>` : '';
+
+    const cautionHTML = spot.caution
+      ? `<div class="section">
+          <div class="section-ttl">注意情報</div>
+          <div class="caution-box">${spot.caution}</div>
+        </div>` : '';
+
+    const historyHTML = (spot.history && spot.history.length > 0)
+      ? spot.history.map(h =>
+          `<div class="upd-row">
+            <div class="upd-v">v${h.version}</div>
+            <div class="upd-d">${formatDate(h.date)}</div>
+            <div class="upd-n">${h.note}</div>
+          </div>`).join('')
+      : '<div class="upd-row"><div class="upd-n">履歴なし</div></div>';
+
+    document.getElementById('spot-content').innerHTML = `
+      <div class="spot-hdr">
+        <div class="spot-hdr-name">${spot.name}</div>
+        <div class="spot-hdr-steps">${formatSteps(spot.steps)}<span class="spot-hdr-unit"> 段</span></div>
+      </div>
+
+      <div class="photo-main">${imgMain}</div>
+      ${thumbsHTML}
+
+      <div class="section">
+        <div class="section-ttl">基本情報</div>
+        <div class="info-row">
+          <div class="info-label">住所</div>
+          <div class="info-value">${spot.address}</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">段数</div>
+          <div class="info-value">${formatSteps(spot.steps)}段</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">最寄り駅</div>
+          <div class="info-value">${stationsHTML}</div>
+        </div>
+        ${officialHTML}
+      </div>
+
+      ${cautionHTML}
+
+      <div class="section">
+        <div class="section-ttl">更新履歴</div>
+        ${historyHTML}
+      </div>
+    `;
+
+    document.querySelectorAll('.photo-thumb').forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        document.querySelectorAll('.photo-thumb').forEach(t => t.classList.remove('active'));
+        thumb.classList.add('active');
+        const mainImg = document.getElementById('main-img');
+        if (mainImg) mainImg.src = thumb.dataset.src;
+      });
+    });
+  }
+
+  const id = getParam('id');
+  if (!id) {
+    document.getElementById('spot-content').innerHTML = '<div class="loading">スポットが指定されていません。</div>';
+  } else {
+    fetch('data/spots.json')
+      .then(r => r.json())
+      .then(data => {
+        const spot = data.find(s => s.id === id);
+        if (!spot) {
+          document.getElementById('spot-content').innerHTML = '<div class="loading">スポットが見つかりませんでした。</div>';
+        } else {
+          render(spot);
+        }
+      })
+      .catch(() => {
+        document.getElementById('spot-content').innerHTML = '<div class="loading">データの読み込みに失敗しました。</div>';
+      });
+  }
+</script>
+</body>
+</html>

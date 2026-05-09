@@ -369,15 +369,17 @@
     const imgHTML = spot.images && spot.images.length > 0
       ? `<img src="images/${spot.images[0]}" alt="${spot.name}">`
       : `<span class="spot-card-img-placeholder">写真準備中</span>`;
-    const stationText = spot.stations.length > 0
-      ? spot.stations[0].name + ' ' + spot.stations[0].access.split('（')[0]
+    // access形式：最初の1件を「路線 駅名 徒歩X分」で表示
+    const firstAccess = spot.access && spot.access.length > 0 ? spot.access[0] : null;
+    const stationText = firstAccess
+      ? `${firstAccess.line.join('・')} ${firstAccess.station} 徒歩${firstAccess.walk_minutes}分`
       : '';
     return `
       <a class="spot-card" href="spot.html?id=${spot.id}">
         <div class="spot-card-img">${imgHTML}</div>
         <div class="spot-card-body">
           <div class="spot-card-name">${spot.name}</div>
-          <div class="spot-card-addr">${spot.address}</div>
+          <div class="spot-card-addr">${spot.address || spot.prefecture}</div>
           <div class="spot-card-footer">
             <div class="spot-card-station">${stationText}</div>
             <div class="spot-card-steps">${formatSteps(spot.steps)}<span>段</span></div>
@@ -428,8 +430,14 @@
       selSteps.appendChild(o);
     });
 
+    // 最寄り駅プルダウン：access形式から駅名を収集して昇順表示
     const stationNames = [];
-    active.forEach(s => s.stations.forEach(st => { if (!stationNames.includes(st.name)) stationNames.push(st.name); }));
+    active.forEach(s => {
+      (s.access || []).forEach(a => {
+        const label = `${a.line.join('・')} ${a.station}`;
+        if (!stationNames.includes(label)) stationNames.push(label);
+      });
+    });
     stationNames.sort((a, b) => a.localeCompare(b, 'ja'));
     const selSt = document.getElementById('sel-station');
     stationNames.forEach(n => { const o = document.createElement('option'); o.value = n; o.textContent = n; selSt.appendChild(o); });
@@ -460,12 +468,16 @@
     const results = active.filter(s => {
       if (pref && s.prefecture !== pref) return false;
       // steps は数値でも文字列でも String() に統一して比較
-      if (steps && String(spot.steps) !== steps) return false;
-      if (station && !s.stations.some(st => st.name === station)) return false;
+      if (steps && String(s.steps) !== steps) return false;
+      // 最寄り駅：access形式で「路線 駅名」ラベルと比較
+      if (station) {
+        const labels = (s.access || []).map(a => `${a.line.join('・')} ${a.station}`);
+        if (!labels.includes(station)) return false;
+      }
       if (free) {
-        const q = free;
-        const hay = [s.name, s.address, s.prefecture, ...s.stations.map(st => st.name)].join(' ');
-        if (!hay.includes(q)) return false;
+        const stationHay = (s.access || []).map(a => `${a.line.join(' ')} ${a.station}`).join(' ');
+        const hay = [s.name, s.address, s.prefecture, stationHay].join(' ');
+        if (!hay.includes(free)) return false;
       }
       return true;
     });

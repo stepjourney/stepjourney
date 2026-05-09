@@ -3,19 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>記事 ? 石段体験ブログ ? 段旅 StepJourney</title>
+<title>記事 階段・石段体験ブログ 段旅 StepJourney</title>
 
-<!-- OGP（記事タイトル・説明はJSで動的に書き換え） -->
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="段旅 StepJourney">
-<meta property="og:title" id="og-title" content="石段体験ブログ ? 段旅 StepJourney">
-<meta property="og:description" id="og-desc" content="全国の石段を訪れた体験や旅のヒントを綴っています。">
-<meta property="og:url" content="">
-<meta property="og:image" content="https://stepjourney.github.io/stepjourney/blog/images/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@あなたのXアカウント">
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FC6FWPNHRK"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -62,6 +51,7 @@
   }
   .logo { color: #fff; font-size: 20px; font-weight: 600; letter-spacing: 0.04em; }
   .logo-en { color: rgba(255,255,255,0.5); font-size: 10px; font-weight: 400; letter-spacing: 0.1em; margin-top: 1px; }
+  .logo-link { text-decoration: none; display: block; }
   header nav { display: flex; gap: 12px; align-items: center; }
   header nav a { color: rgba(255,255,255,0.8); font-size: 12px; text-decoration: none; }
   .lang-btn {
@@ -227,8 +217,10 @@
 
 <header>
   <div>
-    <div class="logo">段旅</div>
-    <div class="logo-en">StepJourney</div>
+    <a href="../stairs/index.html" class="logo-link">
+      <div class="logo">段旅</div>
+      <div class="logo-en">StepJourney</div>
+    </a>
   </div>
   <nav>
     <a href="../stairs/index.html">階段・石段スポットを探す</a>
@@ -238,9 +230,9 @@
 
 <div class="breadcrumb">
   <a href="../stairs/index.html">段旅</a>
-  <span class="breadcrumb-sep">?</span>
-  <a href="index.html">石段体験ブログ</a>
-  <span class="breadcrumb-sep">?</span>
+  <span class="breadcrumb-sep">&gt;</span>
+  <a href="index.html">階段・石段体験ブログ</a>
+  <span class="breadcrumb-sep">&gt;</span>
   <span class="breadcrumb-current" id="bc-title">読み込み中...</span>
 </div>
 
@@ -248,14 +240,13 @@
 
 <div id="article-nav-area"></div>
 
-<a class="back-btn" href="index.html">← ブログ一覧に戻る</a>
+<a class="back-btn" href="index.html">&#8592; ブログ一覧に戻る</a>
 
 <a class="stairs-link" href="../stairs/index.html">
   階段・石段スポットを探す
-  <span>全国の石段データベースはこちら</span>
 </a>
 
-<footer>c 2025 段旅 StepJourney</footer>
+<footer>&copy; 2026 段旅 StepJourney</footer>
 
 <script>
   function getParam(key) {
@@ -296,11 +287,11 @@
   }
 
   function render(article, allArticles) {
-    document.title = `${article.title} ? 石段体験ブログ ? 段旅`;
+    document.title = `${article.title} - 階段・石段体験ブログ - 段旅`;
     document.getElementById('bc-title').textContent = article.title;
 
     // OGP動的書き換え
-    document.getElementById('og-title').setAttribute('content', article.title + ' ? 段旅 StepJourney');
+    document.getElementById('og-title').setAttribute('content', article.title + ' - 段旅 StepJourney');
     document.getElementById('og-desc').setAttribute('content', article.summary || '');
 
     document.getElementById('article-content').innerHTML = `

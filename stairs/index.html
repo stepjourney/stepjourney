@@ -1,1 +1,491 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>段旅 StepJourney ? 全国の石段スポットを探す</title>
 
+<!-- OGP -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="段旅 StepJourney">
+<meta property="og:title" content="段旅 StepJourney ? 全国の石段スポットを探す">
+<meta property="og:description" content="全国に点在する段数の多い階段スポットを紹介しています。石段を登り、その場所の空気と景色を感じてください。">
+<meta property="og:url" content="https://ユーザー名.github.io/stepjourney/stairs/">
+<meta property="og:image" content="https://ユーザー名.github.io/stepjourney/stairs/images/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@あなたのXアカウント">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FC6FWPNHRK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FC6FWPNHRK');
+</script>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ai:        #1b3a6b;
+    --ai-mid:    #2d5a9e;
+    --ai-light:  #e8eef7;
+    --stone:     #8c7e6e;
+    --stone-bg:  #f7f5f0;
+    --stone-bd:  #ddd8d0;
+    --gold:      #b8962e;
+    --text-dark: #1a1a2e;
+    --text-mid:  #4a4a6a;
+    --text-mute: #8888aa;
+    --white:     #ffffff;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+    background: var(--stone-bg);
+    color: var(--text-dark);
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+  }
+
+  /* ヘッダー */
+  header {
+    background: var(--ai);
+    padding: 14px 16px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo { color: #fff; font-size: 20px; font-weight: 600; letter-spacing: 0.04em; }
+  .logo-en { color: rgba(255,255,255,0.5); font-size: 10px; font-weight: 400; letter-spacing: 0.1em; margin-top: 1px; }
+  header nav { display: flex; gap: 12px; align-items: center; }
+  header nav a {
+    color: rgba(255,255,255,0.8);
+    font-size: 12px;
+    text-decoration: none;
+  }
+  .lang-btn {
+    font-size: 11px;
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 5px;
+    padding: 3px 9px;
+    color: rgba(255,255,255,0.8);
+    background: transparent;
+    cursor: pointer;
+  }
+
+  /* ヒーロー */
+  .hero {
+    background: var(--ai);
+    padding: 22px 16px 32px;
+  }
+  .hero h1 {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.55;
+    margin-bottom: 10px;
+    letter-spacing: 0.02em;
+  }
+  .hero h1 em { color: #c8d8f0; font-style: normal; }
+  .hero p {
+    color: rgba(255,255,255,0.62);
+    font-size: 13px;
+    line-height: 1.75;
+  }
+
+  /* 検索パネル */
+  .search-panel {
+    background: var(--white);
+    margin: -16px 12px 0;
+    border-radius: 14px;
+    padding: 18px 16px;
+    border: 1px solid var(--stone-bd);
+    position: relative;
+    z-index: 10;
+  }
+  .search-panel-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-mute);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .srow { margin-bottom: 12px; }
+  .srow label {
+    display: block;
+    font-size: 12px;
+    color: var(--text-mute);
+    margin-bottom: 5px;
+  }
+  .srow select, .srow input {
+    width: 100%;
+    font-size: 14px;
+    padding: 9px 12px;
+    border: 1px solid var(--stone-bd);
+    border-radius: 8px;
+    background: var(--stone-bg);
+    color: var(--text-dark);
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .srow select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238888aa' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
+  }
+  .srow input::placeholder { color: var(--text-mute); }
+  .search-btn {
+    width: 100%;
+    margin-top: 6px;
+    padding: 12px;
+    background: var(--ai);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 9px;
+    cursor: pointer;
+    letter-spacing: 0.03em;
+  }
+  .search-btn:active { opacity: 0.85; }
+
+  /* 注意文 */
+  .notice-bar {
+    margin: 16px 12px 0;
+    background: var(--ai-light);
+    border-left: 3px solid var(--ai-mid);
+    padding: 10px 13px;
+    font-size: 12px;
+    color: var(--text-mid);
+    line-height: 1.65;
+  }
+
+  /* おすすめラベル */
+  .rec-label {
+    margin: 16px 12px 10px;
+    font-size: 13px;
+    color: var(--text-mute);
+  }
+
+  /* スポットカード */
+  .spot-card {
+    background: var(--white);
+    margin: 0 12px 12px;
+    border-radius: 13px;
+    border: 1px solid var(--stone-bd);
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    color: inherit;
+  }
+  .spot-card:active { opacity: 0.85; }
+  .spot-card-img {
+    background: var(--ai-mid);
+    height: 90px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .spot-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .spot-card-img-placeholder {
+    color: rgba(255,255,255,0.35);
+    font-size: 12px;
+  }
+  .spot-card-body { padding: 13px 14px; }
+  .spot-card-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 3px;
+  }
+  .spot-card-addr {
+    font-size: 12px;
+    color: var(--text-mute);
+    margin-bottom: 9px;
+  }
+  .spot-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .spot-card-station {
+    font-size: 12px;
+    color: var(--text-mid);
+    line-height: 1.5;
+  }
+  .spot-card-steps {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--ai);
+    white-space: nowrap;
+  }
+  .spot-card-steps span {
+    font-size: 12px;
+    color: var(--text-mute);
+    font-weight: 400;
+    margin-left: 2px;
+  }
+
+  /* 検索結果なし */
+  .no-result {
+    margin: 20px 12px;
+    text-align: center;
+    color: var(--text-mute);
+    font-size: 14px;
+    padding: 30px 0;
+  }
+
+  /* ブログセクション */
+  .blog-section { margin: 20px 12px; }
+  .section-ttl {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-mid);
+    margin-bottom: 12px;
+    border-left: 3px solid var(--gold);
+    padding-left: 9px;
+    letter-spacing: 0.03em;
+  }
+  .blog-card {
+    background: var(--white);
+    border-radius: 11px;
+    border: 1px solid var(--stone-bd);
+    padding: 13px 14px;
+    margin-bottom: 9px;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    color: inherit;
+  }
+  .blog-card:active { opacity: 0.85; }
+  .blog-card-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 5px;
+    line-height: 1.5;
+  }
+  .blog-card-meta { font-size: 12px; color: var(--text-mute); }
+
+  /* フッター */
+  footer {
+    background: var(--ai);
+    padding: 18px 16px;
+    text-align: center;
+    font-size: 11px;
+    color: rgba(255,255,255,0.35);
+    margin-top: 24px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="logo">段旅</div>
+    <div class="logo-en">StepJourney</div>
+  </div>
+  <nav>
+    <a href="../blog/index.html">石段体験ブログ</a>
+    <button class="lang-btn" onclick="alert('英語版は準備中です。')">EN</button>
+  </nav>
+</header>
+
+<div class="hero">
+  <h1>段と出会う旅へ。<br><em>全国の石段を、探そう。</em></h1>
+  <p>全国に点在する段数の多い階段スポットを紹介しています。<br>石段を登り、その場所の空気と景色を感じてください。</p>
+</div>
+
+<div class="search-panel">
+  <div class="search-panel-title">階段スポットを探す</div>
+
+  <div class="srow">
+    <label for="sel-pref">都道府県から探す</label>
+    <select id="sel-pref"><option value="">－</option></select>
+  </div>
+  <div class="srow">
+    <label for="sel-steps">段数から探す</label>
+    <select id="sel-steps"><option value="">－</option></select>
+  </div>
+  <div class="srow">
+    <label for="sel-station">最寄り駅から探す</label>
+    <select id="sel-station"><option value="">－</option></select>
+  </div>
+  <div class="srow">
+    <label for="inp-free">フリーワードから探す</label>
+    <input id="inp-free" type="text" placeholder="都道府県や駅名を入力" autocomplete="off">
+  </div>
+  <button class="search-btn" id="btn-search">この条件で探す</button>
+</div>
+
+<div class="notice-bar">情報が古い可能性があります。ご自身でも情報を確認し、現地および周りの方に配慮し、安全な旅をしてください。</div>
+
+<div class="rec-label" id="result-label">おすすめ階段スポットを5つ表示しています♪</div>
+
+<div id="results"></div>
+
+<div class="blog-section">
+  <div class="section-ttl">石段体験ブログ 最新記事</div>
+  <a class="blog-card" href="../blog/index.html">
+    <div class="blog-card-title">1,800段を登って気づいた、石段の旅の魅力</div>
+    <div class="blog-card-meta">2025年4月20日 ・ 体験談</div>
+  </a>
+  <a class="blog-card" href="../blog/index.html">
+    <div class="blog-card-title">関西エリアのおすすめ石段スポット5選【2025年版】</div>
+    <div class="blog-card-meta">2025年4月12日 ・ まとめ</div>
+  </a>
+</div>
+
+<footer>c 2025 段旅 StepJourney</footer>
+
+<script>
+  const DATA_URL = 'data/spots.json';
+  let allSpots = [];
+
+  // steps は数値（350）または文字列（"約300"）を安全に表示する
+  // 数値 → "1,842"、"約300" → "約300" そのまま
+  function formatSteps(val) {
+    if (typeof val === 'number') return val.toLocaleString('ja-JP');
+    return String(val);
+  }
+
+  function buildCard(spot) {
+    const imgHTML = spot.images && spot.images.length > 0
+      ? `<img src="images/${spot.images[0]}" alt="${spot.name}">`
+      : `<span class="spot-card-img-placeholder">写真準備中</span>`;
+    const stationText = spot.stations.length > 0
+      ? spot.stations[0].name + ' ' + spot.stations[0].access.split('（')[0]
+      : '';
+    return `
+      <a class="spot-card" href="spot.html?id=${spot.id}">
+        <div class="spot-card-img">${imgHTML}</div>
+        <div class="spot-card-body">
+          <div class="spot-card-name">${spot.name}</div>
+          <div class="spot-card-addr">${spot.address}</div>
+          <div class="spot-card-footer">
+            <div class="spot-card-station">${stationText}</div>
+            <div class="spot-card-steps">${formatSteps(spot.steps)}<span>段</span></div>
+          </div>
+        </div>
+      </a>`;
+  }
+
+  function renderSpots(spots) {
+    const container = document.getElementById('results');
+    if (spots.length === 0) {
+      container.innerHTML = '<div class="no-result">条件に合うスポットが見つかりませんでした。</div>';
+      return;
+    }
+    container.innerHTML = spots.map(buildCard).join('');
+  }
+
+  function populateSelects(spots) {
+    const active = spots.filter(s => s.disabled === 0);
+
+    const prefs = [...new Set(active.map(s => s.prefecture))].sort((a, b) => {
+      const order = ['北海道','青森県','岩手県','宮城県','秋田県','山形県','福島県','茨城県','栃木県','群馬県','埼玉県','千葉県','東京都','神奈川県','新潟県','富山県','石川県','福井県','山梨県','長野県','岐阜県','静岡県','愛知県','三重県','滋賀県','京都府','大阪府','兵庫県','奈良県','和歌山県','鳥取県','島根県','岡山県','広島県','山口県','徳島県','香川県','愛媛県','高知県','福岡県','佐賀県','長崎県','熊本県','大分県','宮崎県','鹿児島県','沖縄県'];
+      return order.indexOf(a) - order.indexOf(b);
+    });
+    const selPref = document.getElementById('sel-pref');
+    prefs.forEach(p => { const o = document.createElement('option'); o.value = p; o.textContent = p; selPref.appendChild(o); });
+
+    // 段数プルダウン：数値も "約300" も数字部分でソートして昇順表示
+    const stepsRaw = [...new Set(active.map(s => s.steps))];
+
+    // ソート用に数字部分を抽出（"約300" → 300、350 → 350）
+    function stepsToNum(v) {
+      const n = parseInt(String(v).replace(/[^0-9]/g, ''));
+      return isNaN(n) ? Infinity : n;
+    }
+    // プルダウン表示ラベル（"350" → "350段"、"約300" → "約300段"）
+    function stepsOptionLabel(v) {
+      if (typeof v === 'number') return v.toLocaleString('ja-JP') + '段';
+      return String(v) + '段'; // "約300" → "約300段"
+    }
+
+    stepsRaw.sort((a, b) => stepsToNum(a) - stepsToNum(b));
+    const selSteps = document.getElementById('sel-steps');
+    stepsRaw.forEach(v => {
+      const o = document.createElement('option');
+      o.value = String(v);
+      o.textContent = stepsOptionLabel(v);
+      selSteps.appendChild(o);
+    });
+
+    const stationNames = [];
+    active.forEach(s => s.stations.forEach(st => { if (!stationNames.includes(st.name)) stationNames.push(st.name); }));
+    stationNames.sort((a, b) => a.localeCompare(b, 'ja'));
+    const selSt = document.getElementById('sel-station');
+    stationNames.forEach(n => { const o = document.createElement('option'); o.value = n; o.textContent = n; selSt.appendChild(o); });
+  }
+
+  function randomSample(arr, n) {
+    const a = [...arr]; let i = a.length;
+    while (i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+    return a.slice(0, n);
+  }
+
+  function doSearch() {
+    const pref = document.getElementById('sel-pref').value;
+    const steps = document.getElementById('sel-steps').value;
+    const station = document.getElementById('sel-station').value;
+    const free = document.getElementById('inp-free').value.trim();
+
+    const label = document.getElementById('result-label');
+    const active = allSpots.filter(s => s.disabled === 0);
+
+    if (!pref && !steps && !station && !free) {
+      label.textContent = 'おすすめ階段スポットを5つ表示しています♪';
+      renderSpots(randomSample(active, 5));
+      return;
+    }
+
+    label.textContent = '検索結果';
+    const results = active.filter(s => {
+      if (pref && s.prefecture !== pref) return false;
+      // steps は数値でも文字列でも String() に統一して比較
+      if (steps && String(spot.steps) !== steps) return false;
+      if (station && !s.stations.some(st => st.name === station)) return false;
+      if (free) {
+        const q = free;
+        const hay = [s.name, s.address, s.prefecture, ...s.stations.map(st => st.name)].join(' ');
+        if (!hay.includes(q)) return false;
+      }
+      return true;
+    });
+    renderSpots(results);
+  }
+
+  fetch(DATA_URL)
+    .then(r => r.json())
+    .then(data => {
+      allSpots = data;
+      populateSelects(data);
+      const active = data.filter(s => s.disabled === 0);
+      renderSpots(randomSample(active, 5));
+    })
+    .catch(() => {
+      document.getElementById('results').innerHTML = '<div class="no-result">データの読み込みに失敗しました。</div>';
+    });
+
+  document.getElementById('btn-search').addEventListener('click', doSearch);
+  document.getElementById('inp-free').addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); });
+</script>
+</body>
+</html>

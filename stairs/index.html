@@ -341,7 +341,7 @@
   検索中...<br><span style="font-size:12px; font-weight:400; opacity:0.8;">検索結果は下に表示されます</span>
 </div>
 
-<div class="notice-bar">?? 情報が古い可能性があります。ご自身でも情報を確認し、現地および周りの方に配慮し、安全な旅をしてください。</div>
+<div class="notice-bar">情報が古い可能性があります。ご自身でも情報を確認し、現地および周りの方に配慮し、安全な旅をしてください。</div>
 
 <div class="rec-label" id="result-label">おすすめ階段・石段スポットを5つ表示しています♪</div>
 
@@ -453,7 +453,7 @@
     const popup = document.getElementById('search-popup');
     popup.style.display = 'block';
     // 検索は瞬時に終わるが、最低400ms表示してUXを確保
-    setTimeout(() => { popup.style.display = 'none'; }, 400);
+    setTimeout(() => { popup.style.display = 'none'; }, 800);
   }
 
   function doSearch() {

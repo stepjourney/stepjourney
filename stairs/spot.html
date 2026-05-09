@@ -305,8 +305,8 @@
     document.getElementById('bc-name').textContent = spot.name;
 
     // OGP動的書き換え
-    document.getElementById('og-title').setAttribute('content', `${spot.name}（${spot.steps.toLocaleString('ja-JP')}段）? 段旅 StepJourney`);
-    document.getElementById('og-desc').setAttribute('content', `${spot.address}にある${spot.steps.toLocaleString('ja-JP')}段の石段スポット。${spot.caution || ''}`);
+    document.getElementById('og-title').setAttribute('content', `${spot.name}（${formatSteps(spot.steps)}段）? 段旅 StepJourney`);
+    document.getElementById('og-desc').setAttribute('content', `${spot.prefecture}にある${formatSteps(spot.steps)}段の石段スポット。${spot.caution || ''}`);
     if (spot.images && spot.images.length > 0) {
       document.querySelector('meta[property="og:image"]').setAttribute('content',
         `https://ユーザー名.github.io/stepjourney/stairs/images/${spot.images[0]}`);
@@ -323,12 +323,18 @@
           </div>`).join('')}</div>`
       : '';
 
-    const stationsHTML = spot.stations.map(st =>
-      `<div class="station-item">
-        <span class="station-name">${st.name}</span>
-        <span class="station-access">${st.access}</span>
-      </div>`
-    ).join('');
+    // access形式：路線・駅名・徒歩分数を表示
+    const accessHTML = (spot.access && spot.access.length > 0)
+      ? spot.access.map(a =>
+          `<div class="station-item">
+            <span class="station-name">${a.line.join('・')} ${a.station}</span>
+            <span class="station-access">徒歩${a.walk_minutes}分</span>
+          </div>`
+        ).join('')
+      : '<div class="station-item">情報なし</div>';
+
+    // 住所：空の場合は都道府県のみ表示
+    const addressText = spot.address || spot.prefecture || '?';
 
     const officialHTML = spot.official_url
       ? `<div class="info-row">
@@ -364,7 +370,7 @@
         <div class="section-ttl">基本情報</div>
         <div class="info-row">
           <div class="info-label">住所</div>
-          <div class="info-value">${spot.address}</div>
+          <div class="info-value">${addressText}</div>
         </div>
         <div class="info-row">
           <div class="info-label">段数</div>
@@ -372,7 +378,7 @@
         </div>
         <div class="info-row">
           <div class="info-label">最寄り駅</div>
-          <div class="info-value">${stationsHTML}</div>
+          <div class="info-value">${accessHTML}</div>
         </div>
         ${officialHTML}
       </div>

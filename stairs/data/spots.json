@@ -2,18 +2,17 @@
   {
     "id": "S001",
     "disabled": 0,
-    "name": "東京タワー 外階段",
+    "name": "東京タワーの外階段",
     "steps": "約600",
-    "address": "東京都港区芝公園4-2-8",
+    "address": "",
     "prefecture": "東京都",
-    "stations": [
-      { "name": "都営大江戸線「赤羽橋駅」", "access": "赤羽橋口より徒歩5分" }
+    "access": [
+      { "type": "train", "line": ["大江戸線"], "station": "赤羽橋駅", "walk_minutes": 5 }
     ],
-    "official_url": "https://www.tokyotower.jp/",
-    "caution": "通常は土日祝のみ開放（平日は要確認）。荒天時は中止。",
+    "caution": "",
     "images": [],
     "history": [
-      { "version": 1, "date": "2025-05-06", "note": "新規掲載" }
+      { "version": 1, "date": "2025-05-09", "note": "新規掲載" }
     ]
   },
   {
@@ -21,50 +20,47 @@
     "disabled": 0,
     "name": "池上本門寺 此経難持坂",
     "steps": 96,
-    "address": "東京都大田区池上1-1-1",
+    "address": "",
     "prefecture": "東京都",
-    "stations": [
-      { "name": "東急池上線「池上駅」", "access": "北口より徒歩10分" }
+    "access": [
+      { "type": "train", "line": ["東急池上線"], "station": "池上駅", "walk_minutes": 10 }
     ],
-    "official_url": "https://honmonji.jp/",
-    "caution": "一段の高さがあり勾配が急なため足元に注意。",
+    "caution": "",
     "images": [],
     "history": [
-      { "version": 1, "date": "2025-05-06", "note": "新規掲載" }
+      { "version": 1, "date": "2025-05-09", "note": "新規掲載" }
     ]
   },
   {
     "id": "S003",
     "disabled": 0,
-    "name": "多摩川台公園 階段",
+    "name": "多摩川台公園の階段",
     "steps": "約152",
-    "address": "東京都大田区田園調布1-63-1",
+    "address": "",
     "prefecture": "東京都",
-    "stations": [
-      { "name": "東急多摩川線「多摩川駅」", "access": "西口より徒歩1分" }
+    "access": [
+      { "type": "train", "line": ["東急多摩川線"], "station": "多摩川駅", "walk_minutes": 1 }
     ],
-    "official_url": "https://www.city.ota.tokyo.jp/shisetsu/park/tamagawadai.html",
-    "caution": "公園内に階段が点在。夜間は暗い場所があるため注意。",
+    "caution": "",
     "images": [],
     "history": [
-      { "version": 1, "date": "2025-05-06", "note": "新規掲載" }
+      { "version": 1, "date": "2025-05-09", "note": "新規掲載" }
     ]
   },
   {
     "id": "S004",
     "disabled": 0,
     "name": "亀塚公園の階段",
-    "steps": 136,
-    "address": "東京都港区三田4-16-20",
+    "steps": "約136",
+    "address": "",
     "prefecture": "東京都",
-    "stations": [
-      { "name": "都営三田線・浅草線「三田駅」", "access": "A3出口より徒歩10分" }
+    "access": [
+      { "type": "train", "line": ["都営浅草線"], "station": "泉岳寺駅", "walk_minutes": 10 }
     ],
-    "official_url": "https://www.city.minato.tokyo.jp/shisetsu/kouen/takanawa/05.html",
-    "caution": "住宅街の中にあるため静かに利用すること。",
+    "caution": "",
     "images": [],
     "history": [
-      { "version": 1, "date": "2025-05-06", "note": "新規掲載" }
+      { "version": 1, "date": "2025-05-09", "note": "新規掲載" }
     ]
   },
   {
@@ -72,135 +68,127 @@
     "disabled": 0,
     "name": "愛宕神社 出世の石段",
     "steps": 86,
-    "address": "東京都港区愛宕1-5-3",
+    "address": "",
     "prefecture": "東京都",
-    "stations": [
-      { "name": "東京メトロ日比谷線「神谷町駅」", "access": "3番出口より徒歩5分" }
+    "access": [
+      { "type": "train", "line": ["日比谷線"], "station": "神谷町駅", "walk_minutes": 5 }
     ],
-    "official_url": "https://www.atago-jinja.com/",
-    "caution": "傾斜が約40度と非常に急。下りはエレベーターや女坂の利用を推奨。",
+    "caution": "",
     "images": [],
     "history": [
-      { "version": 1, "date": "2025-05-06", "note": "新規掲載" }
+      { "version": 1, "date": "2025-05-09", "note": "新規掲載" }
     ]
   },
   {
     "id": "S006",
     "disabled": 0,
     "name": "日枝神社 山王橋参道",
-    "steps": 132,
-    "address": "東京都千代田区永田町2-10-5",
+    "steps": "約130",
+    "address": "",
     "prefecture": "東京都",
-    "stations": [
-      { "name": "東京メトロ「赤坂見附駅」", "access": "11番出口より徒歩3分" }
+    "access": [
+      { "type": "train", "line": ["東京メトロ"], "station": "赤坂見附駅", "walk_minutes": 8 }
     ],
-    "official_url": "https://www.hiejinja.or.jp/",
-    "caution": "エスカレーターが併設。参拝客の邪魔にならないよう注意。",
+    "caution": "",
     "images": [],
     "history": [
-      { "version": 1, "date": "2025-05-06", "note": "新規掲載" }
+      { "version": 1, "date": "2025-05-09", "note": "新規掲載" }
     ]
   },
   {
     "id": "S007",
     "disabled": 0,
-    "name": "玉川病院西側の階段",
+    "name": "玉川病院そばの階段",
     "steps": "約133",
-    "address": "東京都世田谷区岡本3-11付近",
+    "address": "",
     "prefecture": "東京都",
-    "stations": [
-      { "name": "東急田園都市線「二子玉川駅」", "access": "徒歩約15分" }
+    "access": [
+      { "type": "train", "line": ["東急田園都市線"], "station": "二子玉川駅", "walk_minutes": 15 }
     ],
-    "official_url": "",
-    "caution": "生活道路のため通行者への配慮が必要。",
+    "caution": "",
     "images": [],
     "history": [
-      { "version": 1, "date": "2025-05-06", "note": "新規掲載" }
+      { "version": 1, "date": "2025-05-09", "note": "新規掲載" }
     ]
   },
   {
     "id": "S008",
     "disabled": 0,
-    "name": "薬王院 西側の階段",
+    "name": "薬王院の西側階段",
     "steps": "約71",
-    "address": "東京都新宿区下落合4-8-2付近",
+    "address": "",
     "prefecture": "東京都",
-    "stations": [
-      { "name": "西武新宿線「下落合駅」", "access": "徒歩約5分" }
+    "access": [
+      { "type": "train", "line": ["西武新宿線"], "station": "下落合駅", "walk_minutes": 5 }
     ],
-    "official_url": "https://www.yakuouin.or.jp/",
-    "caution": "住宅街に隣接。夜間の利用は控えること。",
+    "caution": "",
     "images": [],
     "history": [
-      { "version": 1, "date": "2025-05-06", "note": "新規掲載" }
+      { "version": 1, "date": "2025-05-09", "note": "新規掲載" }
     ]
   },
   {
     "id": "S009",
     "disabled": 0,
-    "name": "聖蹟桜ヶ丘 いろは坂周辺の階段",
+    "name": "聖蹟桜ヶ丘 いろは坂の階段",
     "steps": "約100",
-    "address": "東京都多摩市桜ヶ丘4丁目付近",
+    "address": "",
     "prefecture": "東京都",
-    "stations": [
-      { "name": "京王線「聖蹟桜ヶ丘駅」", "access": "西口より徒歩10分" }
+    "access": [
+      { "type": "train", "line": ["京王線"], "station": "聖蹟桜ヶ丘駅", "walk_minutes": 10 }
     ],
-    "official_url": "",
-    "caution": "映画のモデル地。私有地に立ち入らないよう注意。",
+    "caution": "",
     "images": [],
     "history": [
-      { "version": 1, "date": "2025-05-06", "note": "新規掲載" }
+      { "version": 1, "date": "2025-05-09", "note": "新規掲載" }
     ]
   },
   {
     "id": "S010",
     "disabled": 0,
-    "name": "京王百草園 園内階段",
+    "name": "京王百草園の階段",
     "steps": "約200",
-    "address": "東京都日野市百草560",
+    "address": "",
     "prefecture": "東京都",
-    "stations": [
-      { "name": "京王線「百草園駅」", "access": "徒歩約10分" }
+    "access": [
+      { "type": "train", "line": ["京王線"], "station": "百草園駅", "walk_minutes": 10 }
     ],
-    "official_url": "https://www.keio-mogusaen.jp/",
-    "caution": "入園料が必要。駅から園入口までの坂道も非常に急。",
+    "caution": "",
     "images": [],
     "history": [
-      { "version": 1, "date": "2025-05-06", "note": "新規掲載" }
+      { "version": 1, "date": "2025-05-09", "note": "新規掲載" }
     ]
   },
   {
     "id": "S011",
     "disabled": 0,
-    "name": "片倉城跡公園 階段",
+    "name": "片倉城跡公園の階段",
     "steps": "約100",
-    "address": "東京都八王子市片倉町2475",
+    "address": "",
     "prefecture": "東京都",
-    "stations": [
-      { "name": "京王線「京王片倉駅」", "access": "徒歩約6分" }
+    "access": [
+      { "type": "train", "line": ["京王線"], "station": "京王片倉駅", "walk_minutes": 6 }
     ],
-    "official_url": "https://www.city.hachioji.tokyo.jp/shisetsu/009/p011931.html",
-    "caution": "自然公園のため歩きやすい靴と虫除け対策を推奨。",
+    "caution": "",
     "images": [],
     "history": [
-      { "version": 1, "date": "2025-05-06", "note": "新規掲載" }
+      { "version": 1, "date": "2025-05-09", "note": "新規掲載" }
     ]
   },
   {
     "id": "S012",
     "disabled": 0,
-    "name": "入間町の長い階段",
+    "name": "入間町の階段",
     "steps": "約100",
-    "address": "東京都調布市入間町2丁目付近",
+    "address": "",
     "prefecture": "東京都",
-    "stations": [
-      { "name": "京王線「仙川駅」", "access": "徒歩約15分" }
+    "access": [
+      { "type": "train", "line": ["京王線"], "station": "仙川駅", "walk_minutes": 15 }
     ],
-    "official_url": "",
-    "caution": "完全な住宅街。早朝・夜間の団体利用などは厳禁。",
+    "caution": "",
     "images": [],
     "history": [
-      { "version": 1, "date": "2025-05-06", "note": "新規掲載" }
+      { "version": 1, "date": "2025-05-09", "note": "新規掲載" }
     ]
   }
 ]

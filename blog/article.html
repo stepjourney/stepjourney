@@ -5,11 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>記事 - 階段・石段体験ブログ 段旅 StepJourney</title>
 
+<!-- 自分のアクセス除外フラグの設定 -->
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-FC6FWPNHRK');
+  if (new URLSearchParams(window.location.search).get('notrack') === '1') {
+    localStorage.setItem('ga_exclude', 'true');
+    alert('このデバイスはGA4除外に設定されました');
+  }
+</script>
+
+<!-- GA4（除外フラグがない場合のみ読み込む） -->
+<script>
+  if (localStorage.getItem('ga_exclude') !== 'true') {
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-FC6FWPNHRK';
+    document.head.appendChild(script);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FC6FWPNHRK');
+  }
 </script>
 
 <style>

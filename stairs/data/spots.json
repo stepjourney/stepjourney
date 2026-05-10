@@ -163,7 +163,7 @@
     "id": "S012",
     "disabled": 0,
     "name": "聖蹟桜ヶ丘のいろは坂の階段その1",
-    "steps": "",
+    "steps": "92",
     "address": "",
     "prefecture": "東京都",
     "access": [
@@ -179,7 +179,7 @@
     "id": "S013",
     "disabled": 0,
     "name": "聖蹟桜ヶ丘のいろは坂の階段その2",
-    "steps": "",
+    "steps": "85",
     "address": "",
     "prefecture": "東京都",
     "access": [
@@ -195,7 +195,7 @@
     "id": "S014",
     "disabled": 0,
     "name": "聖蹟桜ヶ丘のいろは坂の階段その3",
-    "steps": "",
+    "steps": "67",
     "address": "",
     "prefecture": "東京都",
     "access": [
@@ -211,7 +211,7 @@
     "id": "S015",
     "disabled": 0,
     "name": "聖蹟桜ヶ丘のいろは坂の階段その4",
-    "steps": "",
+    "steps": "59",
     "address": "",
     "prefecture": "東京都",
     "access": [

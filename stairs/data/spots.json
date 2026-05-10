@@ -186,7 +186,7 @@
       { "type": "train", "line": ["京王線"], "station": "聖蹟桜ヶ丘駅", "walk_minutes": 10 }
     ],
     "caution": "",
-    "images": { "photos": ["S013-1.png", "S013-2.png", "S013-3.png"], "maps": ["S013-map1.png"] },
+    "images": { "photos": ["S013-1.JPG", "S013-2.JPG", "S013-3.jpg"], "maps": ["S013-map1.png"] },
     "history": [
       { "version": 1, "date": "2025-05-10", "note": "新規掲載" }
     ]
@@ -202,7 +202,7 @@
       { "type": "train", "line": ["京王線"], "station": "聖蹟桜ヶ丘駅", "walk_minutes": 10 }
     ],
     "caution": "",
-    "images": { "photos": ["S014-1.png", "S014-2.png", "S014-3.png"], "maps": ["S014-map1.png"] },
+    "images": { "photos": ["S014-1.png", "S014-2.JPG", "S014-3.jpg"], "maps": ["S014-map1.png"] },
     "history": [
       { "version": 1, "date": "2025-05-10", "note": "新規掲載" }
     ]
@@ -218,7 +218,7 @@
       { "type": "train", "line": ["京王線"], "station": "聖蹟桜ヶ丘駅", "walk_minutes": 10 }
     ],
     "caution": "",
-    "images": { "photos": ["S015-1.png", "S015-2.png", "S015-3.png"], "maps": ["S015-map1.png"] },
+    "images": { "photos": ["S015-1.png", "S015-2.JPG", "S015-3.jpg"], "maps": ["S015-map1.png"] },
     "history": [
       { "version": 1, "date": "2025-05-10", "note": "新規掲載" }
     ]

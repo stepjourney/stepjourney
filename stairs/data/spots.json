@@ -10,7 +10,7 @@
       { "type": "train", "line": ["大江戸線"], "station": "赤羽橋駅", "walk_minutes": 5 }
     ],
     "caution": "",
-    "images": [],
+    "images": { "photos": [], "maps": [] },
     "history": [
       { "version": 1, "date": "2025-05-09", "note": "新規掲載" }
     ]
@@ -18,7 +18,7 @@
   {
     "id": "S002",
     "disabled": 0,
-    "name": "池上本門寺 此経難持坂",
+    "name": "池上本門寺の此経難持坂",
     "steps": 96,
     "address": "",
     "prefecture": "東京都",
@@ -26,7 +26,7 @@
       { "type": "train", "line": ["東急池上線"], "station": "池上駅", "walk_minutes": 10 }
     ],
     "caution": "",
-    "images": [],
+    "images": { "photos": [], "maps": [] },
     "history": [
       { "version": 1, "date": "2025-05-09", "note": "新規掲載" }
     ]
@@ -42,7 +42,7 @@
       { "type": "train", "line": ["東急多摩川線"], "station": "多摩川駅", "walk_minutes": 1 }
     ],
     "caution": "",
-    "images": [],
+    "images": { "photos": [], "maps": [] },
     "history": [
       { "version": 1, "date": "2025-05-09", "note": "新規掲載" }
     ]
@@ -58,7 +58,7 @@
       { "type": "train", "line": ["都営浅草線"], "station": "泉岳寺駅", "walk_minutes": 10 }
     ],
     "caution": "",
-    "images": [],
+    "images": { "photos": [], "maps": [] },
     "history": [
       { "version": 1, "date": "2025-05-09", "note": "新規掲載" }
     ]
@@ -66,7 +66,7 @@
   {
     "id": "S005",
     "disabled": 0,
-    "name": "愛宕神社 出世の石段",
+    "name": "愛宕神社の出世の石段",
     "steps": 86,
     "address": "",
     "prefecture": "東京都",
@@ -74,7 +74,7 @@
       { "type": "train", "line": ["日比谷線"], "station": "神谷町駅", "walk_minutes": 5 }
     ],
     "caution": "",
-    "images": [],
+    "images": { "photos": [], "maps": [] },
     "history": [
       { "version": 1, "date": "2025-05-09", "note": "新規掲載" }
     ]
@@ -82,7 +82,7 @@
   {
     "id": "S006",
     "disabled": 0,
-    "name": "日枝神社 山王橋参道",
+    "name": "日枝神社の山王橋参道",
     "steps": "約130",
     "address": "",
     "prefecture": "東京都",
@@ -90,7 +90,7 @@
       { "type": "train", "line": ["東京メトロ"], "station": "赤坂見附駅", "walk_minutes": 8 }
     ],
     "caution": "",
-    "images": [],
+    "images": { "photos": [], "maps": [] },
     "history": [
       { "version": 1, "date": "2025-05-09", "note": "新規掲載" }
     ]
@@ -106,7 +106,7 @@
       { "type": "train", "line": ["東急田園都市線"], "station": "二子玉川駅", "walk_minutes": 15 }
     ],
     "caution": "",
-    "images": [],
+    "images": { "photos": [], "maps": [] },
     "history": [
       { "version": 1, "date": "2025-05-09", "note": "新規掲載" }
     ]
@@ -114,7 +114,7 @@
   {
     "id": "S008",
     "disabled": 0,
-    "name": "薬王院の西側階段",
+    "name": "薬王院そばの階段",
     "steps": "約71",
     "address": "",
     "prefecture": "東京都",
@@ -122,45 +122,13 @@
       { "type": "train", "line": ["西武新宿線"], "station": "下落合駅", "walk_minutes": 5 }
     ],
     "caution": "",
-    "images": [],
-    "history": [
-      { "version": 1, "date": "2025-05-09", "note": "新規掲載" }
-    ]
-  },
-  {
-    "id": "S009",
-    "disabled": 0,
-    "name": "聖蹟桜ヶ丘 いろは坂の階段",
-    "steps": "約100",
-    "address": "",
-    "prefecture": "東京都",
-    "access": [
-      { "type": "train", "line": ["京王線"], "station": "聖蹟桜ヶ丘駅", "walk_minutes": 10 }
-    ],
-    "caution": "",
-    "images": [],
+    "images": { "photos": [], "maps": [] },
     "history": [
       { "version": 1, "date": "2025-05-09", "note": "新規掲載" }
     ]
   },
   {
     "id": "S010",
-    "disabled": 0,
-    "name": "京王百草園の階段",
-    "steps": "約200",
-    "address": "",
-    "prefecture": "東京都",
-    "access": [
-      { "type": "train", "line": ["京王線"], "station": "百草園駅", "walk_minutes": 10 }
-    ],
-    "caution": "",
-    "images": [],
-    "history": [
-      { "version": 1, "date": "2025-05-09", "note": "新規掲載" }
-    ]
-  },
-  {
-    "id": "S011",
     "disabled": 0,
     "name": "片倉城跡公園の階段",
     "steps": "約100",
@@ -170,15 +138,15 @@
       { "type": "train", "line": ["京王線"], "station": "京王片倉駅", "walk_minutes": 6 }
     ],
     "caution": "",
-    "images": [],
+    "images": { "photos": [], "maps": [] },
     "history": [
       { "version": 1, "date": "2025-05-09", "note": "新規掲載" }
     ]
   },
   {
-    "id": "S012",
+    "id": "S011",
     "disabled": 0,
-    "name": "入間町の階段",
+    "name": "東京都調布市入間町の階段",
     "steps": "約100",
     "address": "",
     "prefecture": "東京都",
@@ -186,7 +154,87 @@
       { "type": "train", "line": ["京王線"], "station": "仙川駅", "walk_minutes": 15 }
     ],
     "caution": "",
-    "images": [],
+    "images": { "photos": [], "maps": [] },
+    "history": [
+      { "version": 1, "date": "2025-05-09", "note": "新規掲載" }
+    ]
+  },
+  {
+    "id": "S012",
+    "disabled": 0,
+    "name": "聖蹟桜ヶ丘のいろは坂の階段その1",
+    "steps": "",
+    "address": "",
+    "prefecture": "東京都",
+    "access": [
+      { "type": "train", "line": ["京王線"], "station": "聖蹟桜ヶ丘駅", "walk_minutes": 10 }
+    ],
+    "caution": "",
+    "images": { "photos": ["S012-1.png", "S012-2.png", "S012-3.png"], "maps": ["S012-map1.png"] },
+    "history": [
+      { "version": 1, "date": "2025-05-10", "note": "新規掲載" }
+    ]
+  },
+  {
+    "id": "S013",
+    "disabled": 0,
+    "name": "聖蹟桜ヶ丘のいろは坂の階段その2",
+    "steps": "",
+    "address": "",
+    "prefecture": "東京都",
+    "access": [
+      { "type": "train", "line": ["京王線"], "station": "聖蹟桜ヶ丘駅", "walk_minutes": 10 }
+    ],
+    "caution": "",
+    "images": { "photos": ["S013-1.png", "S013-2.png", "S013-3.png"], "maps": ["S013-map1.png"] },
+    "history": [
+      { "version": 1, "date": "2025-05-10", "note": "新規掲載" }
+    ]
+  },
+  {
+    "id": "S014",
+    "disabled": 0,
+    "name": "聖蹟桜ヶ丘のいろは坂の階段その3",
+    "steps": "",
+    "address": "",
+    "prefecture": "東京都",
+    "access": [
+      { "type": "train", "line": ["京王線"], "station": "聖蹟桜ヶ丘駅", "walk_minutes": 10 }
+    ],
+    "caution": "",
+    "images": { "photos": ["S014-1.png", "S014-2.png", "S014-3.png"], "maps": ["S014-map1.png"] },
+    "history": [
+      { "version": 1, "date": "2025-05-10", "note": "新規掲載" }
+    ]
+  },
+  {
+    "id": "S015",
+    "disabled": 0,
+    "name": "聖蹟桜ヶ丘のいろは坂の階段その4",
+    "steps": "",
+    "address": "",
+    "prefecture": "東京都",
+    "access": [
+      { "type": "train", "line": ["京王線"], "station": "聖蹟桜ヶ丘駅", "walk_minutes": 10 }
+    ],
+    "caution": "",
+    "images": { "photos": ["S015-1.png", "S015-2.png", "S015-3.png"], "maps": ["S015-map1.png"] },
+    "history": [
+      { "version": 1, "date": "2025-05-10", "note": "新規掲載" }
+    ]
+  },
+  {
+    "id": "S016",
+    "disabled": 0,
+    "name": "京王百草園の階段",
+    "steps": "約200",
+    "address": "",
+    "prefecture": "東京都",
+    "access": [
+      { "type": "train", "line": ["京王線"], "station": "百草園駅", "walk_minutes": 10 }
+    ],
+    "caution": "",
+    "images": { "photos": [], "maps": [] },
     "history": [
       { "version": 1, "date": "2025-05-09", "note": "新規掲載" }
     ]

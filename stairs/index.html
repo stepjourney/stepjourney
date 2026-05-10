@@ -367,8 +367,9 @@
   }
 
   function buildCard(spot) {
-    const imgHTML = spot.images && spot.images.length > 0
-      ? `<img src="images/${spot.images[0]}" alt="${spot.name}">`
+    const photos = (spot.images && spot.images.photos) ? spot.images.photos : [];
+    const imgHTML = photos.length > 0
+      ? `<img src="images/${photos[0]}" alt="${spot.name}">`
       : `<span class="spot-card-img-placeholder">写真準備中</span>`;
     // access形式：最初の1件を「路線 駅名 徒歩X分」で表示
     const firstAccess = spot.access && spot.access.length > 0 ? spot.access[0] : null;

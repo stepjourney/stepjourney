@@ -170,7 +170,7 @@
       { "type": "train", "line": ["京王線"], "station": "聖蹟桜ヶ丘駅", "walk_minutes": 10 }
     ],
     "caution": "",
-    "images": { "photos": ["S012-1.jpg", "S012-2.jpg", "S012-3.jpg"], "maps": ["S012-map1.png"] },
+    "images": { "photos": ["S012-1.JPG", "S012-2.JPG", "S012-3.jpg"], "maps": ["S012-map1.png"] },
     "history": [
       { "version": 1, "date": "2025-05-10", "note": "新規掲載" }
     ]

@@ -74,7 +74,7 @@
       { "type": "train", "line": ["東急田園都市線"], "station": "二子玉川駅", "walk_minutes": 20 }
     ],
     "caution": "",
-    "images": { "photos": [], "maps": [] },
+    "images": { "photos": ["S005-1", "S005-2", "S005-3"], "maps": ["S005-map1","S005-map2"] },
     "history": [
       { "version": 1, "date": "2025-05-09", "note": "新規掲載" }
     ]

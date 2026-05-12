@@ -58,7 +58,7 @@
       { "type": "train", "line": ["日比谷線"], "station": "神谷町駅", "walk_minutes": 5 }
     ],
     "caution": "",
-    "images": { "photos": [], "maps": [] },
+    "images": { "photos": ["S004-1", "S004-2", "S004-3"], "maps": ["S004-map1"] },
     "history": [
       { "version": 1, "date": "2025-05-09", "note": "新規掲載" }
     ]

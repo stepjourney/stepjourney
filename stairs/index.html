@@ -381,16 +381,36 @@
     return String(val);
   }
 
-  function buildCard(spot) {
-    const photos = (spot.images && spot.images.photos) ? spot.images.photos : [];
-    const imgHTML = photos.length > 0
-      ? `<img src="images/${photos[0]}" alt="${spot.name}">`
-      : `<span class="spot-card-img-placeholder">写真準備中</span>`;
+  const EXTS = ['jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG'];
+  function resolveImg(baseName, dir) {
+    return new Promise(resolve => {
+      let i = 0;
+      function tryNext() {
+        if (i >= EXTS.length) { resolve(null); return; }
+        const url = `${dir}/${baseName}.${EXTS[i++]}`;
+        const img = new Image();
+        img.onload  = () => resolve(url);
+        img.onerror = tryNext;
+        img.src = url;
+      }
+      tryNext();
+    });
+  }
+
+  async function buildCard(spot) {
+    const photoNames = (spot.images && spot.images.photos) ? spot.images.photos : [];
+    let imgHTML = `<span class="spot-card-img-placeholder">写真準備中</span>`;
+    if (photoNames.length > 0) {
+      const url = await resolveImg(photoNames[0], 'images');
+      if (url) imgHTML = `<img src="${url}" alt="${spot.name}">`;
+    }
     // access形式：最初の1件を「路線 駅名 徒歩X分」で表示
     const firstAccess = spot.access && spot.access.length > 0 ? spot.access[0] : null;
     const stationText = firstAccess
       ? `${firstAccess.line.join('・')} ${firstAccess.station} 徒歩${firstAccess.walk_minutes}分`
       : '';
+    const stepsDisplay = (spot.steps !== '' && spot.steps !== null && spot.steps !== undefined)
+      ? `${formatSteps(spot.steps)}<span>段</span>` : '?';
     return `
       <a class="spot-card" href="spot.html?id=${spot.id}">
         <div class="spot-card-img">${imgHTML}</div>
@@ -399,19 +419,20 @@
           <div class="spot-card-addr">${spot.address || spot.prefecture}</div>
           <div class="spot-card-footer">
             <div class="spot-card-station">${stationText}</div>
-            <div class="spot-card-steps">${formatSteps(spot.steps)}<span>段</span></div>
+            <div class="spot-card-steps">${stepsDisplay}</div>
           </div>
         </div>
       </a>`;
   }
 
-  function renderSpots(spots) {
+  async function renderSpots(spots) {
     const container = document.getElementById('results');
     if (spots.length === 0) {
       container.innerHTML = '<div class="no-result">条件に合うスポットが見つかりませんでした。</div>';
       return;
     }
-    container.innerHTML = spots.map(buildCard).join('');
+    const cards = await Promise.all(spots.map(buildCard));
+    container.innerHTML = cards.join('');
   }
 
   function populateSelects(spots) {
@@ -473,7 +494,7 @@
     setTimeout(() => { popup.style.display = 'none'; }, 800);
   }
 
-  function doSearch() {
+  async function doSearch() {
     const pref = document.getElementById('sel-pref').value;
     const steps = document.getElementById('sel-steps').value;
     const station = document.getElementById('sel-station').value;
@@ -484,7 +505,7 @@
 
     if (!pref && !steps && !station && !free) {
       label.textContent = 'おすすめ階段・石段スポットを5つ表示しています♪';
-      renderSpots(randomSample(active, 5));
+      await renderSpots(randomSample(active, 5));
       return;
     }
 
@@ -504,7 +525,7 @@
       }
       return true;
     });
-    renderSpots(results);
+    await renderSpots(results);
   }
 
   // ブログ最新記事を動的読み込み（articles.jsonがない・空なら欄ごと非表示）
@@ -534,11 +555,11 @@
 
   fetch(DATA_URL)
     .then(r => r.json())
-    .then(data => {
+    .then(async data => {
       allSpots = data;
       populateSelects(data);
       const active = data.filter(s => s.disabled === 0);
-      renderSpots(randomSample(active, 5));
+      await renderSpots(randomSample(active, 5));
     })
     .catch(() => {
       document.getElementById('results').innerHTML = '<div class="no-result">データの読み込みに失敗しました。</div>';

@@ -26,7 +26,7 @@
       { "type": "train", "line": ["東急多摩川線"], "station": "多摩川駅", "walk_minutes": 10 }
     ],
     "caution": "",
-    "images": { "photos": [], "maps": [] },
+    "images": { "photos": ["S002-1", "S002-2", "S002-3"], "maps": ["S002-map1","S002-map2"] },
     "history": [
       { "version": 1, "date": "2025-05-09", "note": "新規掲載" }
     ]

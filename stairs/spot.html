@@ -356,30 +356,56 @@
     return String(val);
   }
 
-  function render(spot) {
+   // 拡張子なしのファイル名から実際に存在する画像URLを探して返す
+  const EXTS = ['jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG'];
+  function resolveImg(baseName, dir) {
+    return new Promise(resolve => {
+      let i = 0;
+      function tryNext() {
+        if (i >= EXTS.length) { resolve(null); return; }
+        const url = `${dir}/${baseName}.${EXTS[i++]}`;
+        const img = new Image();
+        img.onload  = () => resolve(url);
+        img.onerror = tryNext;
+        img.src = url;
+      }
+      tryNext();
+    });
+  }
+
+  async function resolveAll(names, dir) {
+    const results = await Promise.all(names.map(n => resolveImg(n, dir)));
+    return results.filter(Boolean); // nullを除外
+  }
+
+  async function render(spot) {
     document.title = `${spot.name} - 段旅 StepJourney`;
     document.getElementById('bc-name').textContent = spot.name;
 
-    const photos = (spot.images && spot.images.photos) ? spot.images.photos : [];
-    const maps   = (spot.images && spot.images.maps)   ? spot.images.maps   : [];
+    const photoNames = (spot.images && spot.images.photos) ? spot.images.photos : [];
+    const mapNames   = (spot.images && spot.images.maps)   ? spot.images.maps   : [];
+
+    // 拡張子を自動解決
+    const photoUrls = await resolveAll(photoNames, 'images');
+    const mapUrls   = await resolveAll(mapNames,   'images');
 
     // 現地写真エリア
-    const imgMain = photos.length > 0
-      ? `<img src="images/${photos[0]}" alt="${spot.name} メイン写真" id="main-img">`
+    const imgMain = photoUrls.length > 0
+      ? `<img src="${photoUrls[0]}" alt="${spot.name} メイン写真" id="main-img">`
       : `<div class="photo-placeholder">写真準備中</div>`;
-    const thumbsHTML = photos.length > 1
-      ? `<div class="photo-thumbs">${photos.map((img, i) =>
-          `<div class="photo-thumb${i === 0 ? ' active' : ''}" data-src="images/${img}" data-target="main-img">
-            <img src="images/${img}" alt="写真${i+1}">
+    const thumbsHTML = photoUrls.length > 1
+      ? `<div class="photo-thumbs">${photoUrls.map((url, i) =>
+          `<div class="photo-thumb${i === 0 ? ' active' : ''}" data-src="${url}" data-target="main-img">
+            <img src="${url}" alt="写真${i+1}">
           </div>`).join('')}</div>`
       : '';
 
     // 地図エリア
-    const mapMain = maps.length > 0
-      ? `<div class="map-img"><img src="images/${maps[0]}" alt="${spot.name} 地図" id="main-map"></div>
-         ${maps.length > 1 ? `<div class="map-thumbs">${maps.map((img, i) =>
-           `<div class="map-thumb${i === 0 ? ' active' : ''}" data-src="images/${img}" data-target="main-map">
-             <img src="images/${img}" alt="地図${i+1}">
+    const mapMain = mapUrls.length > 0
+      ? `<div class="map-img"><img src="${mapUrls[0]}" alt="${spot.name} 地図" id="main-map"></div>
+         ${mapUrls.length > 1 ? `<div class="map-thumbs">${mapUrls.map((url, i) =>
+           `<div class="map-thumb${i === 0 ? ' active' : ''}" data-src="${url}" data-target="main-map">
+             <img src="${url}" alt="地図${i+1}">
            </div>`).join('')}</div>` : ''}`
       : `<div class="map-placeholder">地図準備中</div>`;
 
@@ -394,7 +420,7 @@
       : '<div class="station-item">情報なし</div>';
 
     // 住所：空の場合は都道府県のみ表示
-    const addressText = spot.address || spot.prefecture || '—';
+    const addressText = spot.address || spot.prefecture || '?';
 
     // 段数：空の場合は「情報なし」表示
     const stepsText = (spot.steps !== '' && spot.steps !== null && spot.steps !== undefined)

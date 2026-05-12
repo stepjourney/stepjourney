@@ -182,7 +182,9 @@
     "steps": 283,
     "address": "東京都稲城市矢野口4019",
     "prefecture": "東京都",
-    "access": [],
+    "access": [
+      { "type": "train", "line": ["京王相模原線"], "station": "京王よみうりランド駅", "walk_minutes": 5 }
+    ],
     "caution": "",
     "images": { "photos": ["S012-1", "S012-2", "S012-3","S012-4", "S012-5", "S012-6", "S012-7"], "maps": ["S012-map1","S012-map2"] },
     "history": [

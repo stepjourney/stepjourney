@@ -250,7 +250,7 @@
       { "type": "train", "line": ["東急池上線"], "station": "池上駅", "walk_minutes": 10 }
     ],
     "caution": "",
-    "images": { "photos": [], "maps": [] },
+    "images": { "photos": ["S016-1", "S016-2", "S016-3","S016-4"], "maps": ["S016-map1","S016-map2"] },
     "history": [
       { "version": 1, "date": "2025-05-09", "note": "新規掲載" }
     ]
@@ -266,7 +266,7 @@
       { "type": "train", "line": ["東急池上線"], "station": "池上駅", "walk_minutes": 10 }
     ],
     "caution": "",
-    "images": { "photos": [], "maps": [] },
+    "images": { "photos": ["S017-1", "S017-2", "S017-3","S017-4"], "maps": ["S017-map1","S017-map2"] },
     "history": [
       { "version": 1, "date": "2025-05-09", "note": "新規掲載" }
     ]

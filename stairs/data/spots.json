@@ -218,7 +218,7 @@
       { "type": "train", "line": ["東京メトロ"], "station": "赤坂見附駅", "walk_minutes": 10 }
     ],
     "caution": "",
-    "images": { "photos": [], "maps": [] },
+    "images": { "photos": ["S014-1", "S014-2", "S014-3"], "maps": ["S014-map1","S014-map2"] },
     "history": [
       { "version": 1, "date": "2025-05-09", "note": "新規掲載" }
     ]

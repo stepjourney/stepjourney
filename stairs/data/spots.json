@@ -184,7 +184,7 @@
     "prefecture": "東京都",
     "access": [],
     "caution": "",
-    "images": { "photos": [], "maps": [] },
+    "images": { "photos": ["S012-1", "S012-2", "S012-3","S012-4", "S012-5", "S012-6", "S012-7"], "maps": ["S012-map1","S012-map2"] },
     "history": [
       { "version": 1, "date": "2026-05-12", "note": "新規掲載" }
     ]

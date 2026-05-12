@@ -42,7 +42,7 @@
       { "type": "train", "line": ["都営浅草線"], "station": "泉岳寺駅", "walk_minutes": 15 }
     ],
     "caution": "",
-    "images": { "photos": [], "maps": [] },
+    "images": { "photos": ["S003-1", "S003-2", "S003-3"], "maps": ["S003-map1"] },
     "history": [
       { "version": 1, "date": "2025-05-09", "note": "新規掲載" }
     ]

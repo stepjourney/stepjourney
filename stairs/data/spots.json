@@ -90,7 +90,7 @@
       { "type": "train", "line": ["西武新宿線"], "station": "下落合駅", "walk_minutes": 10 }
     ],
     "caution": "",
-    "images": { "photos": [], "maps": [] },
+    "images": { "photos": ["S006-1", "S006-2", "S006-3"], "maps": ["S006-map1","S006-map2"] },
     "history": [
       { "version": 1, "date": "2025-05-09", "note": "新規掲載" }
     ]
@@ -234,7 +234,7 @@
       { "type": "train", "line": ["東京メトロ"], "station": "赤坂見附駅", "walk_minutes": 10 }
     ],
     "caution": "",
-    "images": { "photos": [], "maps": [] },
+    "images": { "photos": ["S015-1", "S015-2", "S015-3"], "maps": ["S015-map1"] },
     "history": [
       { "version": 1, "date": "2025-05-09", "note": "新規掲載" }
     ]

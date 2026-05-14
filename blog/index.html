@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>階段・石段体験ブログ - 段旅 StepJourney</title>
+<meta name="description" content="全国の階段・石段を実際に登った体験記ブログ。段数・所要時間・きつさを正直にレポートします。">
+
+<!-- 自分のアクセス除外フラグの設定 -->
+<script>
+  if (new URLSearchParams(window.location.search).get('notrack') === '1') {
+    localStorage.setItem('ga_exclude', 'true');
+    alert('このデバイスはGA4除外に設定されました');
+  }
+</script>
+
+<!-- GA4（除外フラグがない場合のみ読み込む） -->
+<script>
+  if (localStorage.getItem('ga_exclude') !== 'true') {
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-FC6FWPNHRK';
+    document.head.appendChild(script);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FC6FWPNHRK');
+  }
+</script>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ai:        #1b3a6b;
+    --ai-mid:    #2d5a9e;
+    --ai-light:  #e8eef7;
+    --stone-bg:  #f7f5f0;
+    --stone-bd:  #ddd8d0;
+    --gold:      #b8962e;
+    --text-dark: #1a1a2e;
+    --text-mid:  #4a4a6a;
+    --text-mute: #8888aa;
+    --white:     #ffffff;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+    background: var(--stone-bg);
+    color: var(--text-dark);
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+  }
+
+  /* ヘッダー */
+  header {
+    background: var(--ai);
+    padding: 14px 16px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo { color: #fff; font-size: 20px; font-weight: 600; letter-spacing: 0.04em; }
+  .logo-en { color: rgba(255,255,255,0.5); font-size: 10px; font-weight: 400; letter-spacing: 0.1em; margin-top: 1px; }
+  .logo-link { text-decoration: none; display: block; }
+  header nav { display: flex; gap: 12px; align-items: center; }
+  header nav a { color: rgba(255,255,255,0.8); font-size: 12px; text-decoration: none; }
+  .lang-btn {
+    font-size: 11px;
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 5px;
+    padding: 3px 9px;
+    color: rgba(255,255,255,0.8);
+    background: transparent;
+    cursor: pointer;
+  }
+
+  /* パンくず */
+  .breadcrumb {
+    padding: 10px 16px;
+    font-size: 12px;
+    color: var(--text-mute);
+    background: var(--stone-bg);
+    border-bottom: 1px solid var(--stone-bd);
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .breadcrumb a { color: var(--text-mute); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--text-mid); }
+  .breadcrumb-sep { color: #ccc; }
+
+  /* ブログタイトルエリア */
+  .blog-hdr {
+    background: var(--ai);
+    padding: 22px 16px 24px;
+  }
+  .blog-hdr-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+  .blog-hdr-title {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+  .blog-hdr-desc {
+    color: rgba(255,255,255,0.6);
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  /* カテゴリフィルター */
+  .filter-area {
+    padding: 12px 16px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .filter-btn {
+    font-size: 12px;
+    border: 1px solid var(--stone-bd);
+    border-radius: 20px;
+    padding: 4px 12px;
+    background: var(--white);
+    color: var(--text-mid);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .filter-btn.active {
+    background: var(--ai);
+    border-color: var(--ai);
+    color: #fff;
+  }
+
+  /* 記事一覧 */
+  .article-list {
+    padding: 0 12px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .article-card {
+    background: var(--white);
+    border: 1px solid var(--stone-bd);
+    border-radius: 13px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: box-shadow 0.15s;
+  }
+  .article-card:active { opacity: 0.85; }
+
+  .card-img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+    background: var(--ai-light);
+  }
+  .card-img-placeholder {
+    width: 100%;
+    height: 160px;
+    background: linear-gradient(135deg, var(--ai-light) 0%, #d0dcef 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    color: var(--ai-mid);
+    opacity: 0.5;
+  }
+
+  .card-body {
+    padding: 14px 16px 16px;
+  }
+  .card-meta {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .card-cat {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .card-date {
+    font-size: 12px;
+    color: var(--text-mute);
+  }
+  .card-title {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.45;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+  }
+  .card-summary {
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.65;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .card-arrow {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--ai-mid);
+    font-weight: 600;
+  }
+
+  /* 記事なし */
+  .no-articles {
+    text-align: center;
+    color: var(--text-mute);
+    padding: 40px 16px;
+    font-size: 14px;
+  }
+
+  /* 階段スポットへのリンク */
+  .stairs-link {
+    display: block;
+    margin: 0 12px 20px;
+    padding: 14px 16px;
+    background: var(--ai-light);
+    border: 1px solid #c0d0e8;
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--ai);
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+  }
+  .stairs-link span {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-mid);
+    display: block;
+    margin-top: 3px;
+  }
+
+  footer {
+    background: var(--ai);
+    padding: 18px 16px;
+    text-align: center;
+    font-size: 11px;
+    color: rgba(255,255,255,0.35);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <a href="../stairs/index.html" class="logo-link">
+      <div class="logo">段旅</div>
+      <div class="logo-en">StepJourney</div>
+    </a>
+  </div>
+  <nav>
+    <a href="../stairs/index.html">階段・石段スポットを探す</a>
+    <button class="lang-btn" onclick="alert('英語版は準備中です。')">EN</button>
+  </nav>
+</header>
+
+<div class="breadcrumb">
+  <a href="../stairs/index.html">段旅</a>
+  <span class="breadcrumb-sep">&gt;</span>
+  <span>階段・石段体験ブログ</span>
+</div>
+
+<div class="blog-hdr">
+  <div class="blog-hdr-label">BLOG</div>
+  <div class="blog-hdr-title">階段・石段スポット体験ブログ</div>
+  <div class="blog-hdr-desc">全国の階段・石段スポットを実際に登った体験記。段数・きつさ・景色をレポートします。</div>
+</div>
+
+<div class="filter-area" id="filter-area">
+  <button class="filter-btn active" data-cat="all">すべて</button>
+</div>
+
+<div class="article-list" id="article-list"></div>
+
+<a class="stairs-link" href="../stairs/index.html">
+  階段・石段スポットを探す
+  <span>全国の階段・石段スポットデータベース</span>
+</a>
+
+<footer>&copy; 2026 段旅 StepJourney</footer>
+
+<script>
+  // =============================
+  // 記事データ（記事を追加するたびにここに足す）
+  // =============================
+  const articles = [
+    {
+      id: "A001",
+      title: "【体験談】東京都稲城市「巨人への道」283段を登ってみた | ジャビット君が応援してくれた！",
+      date: "2025-05-14",
+      category: "体験談",
+      summary: "稲城市にある読売ジャイアンツゆかりの283段。オレンジの手すりにジャビット君の応援、頂上の銀色の看板と眺望まで、ジャイアンツらしさ全開の石段を昼間に登ってきました。",
+      thumbnail: "images/A001-1.jpg"  // サムネイル画像（不要な場合はnullに）
+    }
+  ];
+
+  // =============================
+  // カテゴリフィルター生成
+  // =============================
+  function buildFilters() {
+    const cats = ['all', ...new Set(articles.map(a => a.category))];
+    const area = document.getElementById('filter-area');
+    area.innerHTML = cats.map(cat =>
+      `<button class="filter-btn ${cat === 'all' ? 'active' : ''}" data-cat="${cat}">
+        ${cat === 'all' ? 'すべて' : cat}
+      </button>`
+    ).join('');
+    area.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        area.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderList(btn.dataset.cat);
+      });
+    });
+  }
+
+  // =============================
+  // 記事カード描画
+  // =============================
+  function formatDate(dateStr) {
+    const [y, m, d] = dateStr.split('-');
+    return `${y}年${parseInt(m)}月${parseInt(d)}日`;
+  }
+
+  function escapeHtml(str) {
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function renderList(cat) {
+    const list = document.getElementById('article-list');
+    const filtered = cat === 'all' ? articles : articles.filter(a => a.category === cat);
+
+    if (filtered.length === 0) {
+      list.innerHTML = '<div class="no-articles">記事がありません。</div>';
+      return;
+    }
+
+    list.innerHTML = filtered.map(a => {
+      const imgHtml = a.thumbnail
+        ? `<img class="card-img" src="${escapeHtml(a.thumbnail)}" alt="${escapeHtml(a.title)}" loading="lazy" onerror="this.style.display='none'">`
+        : `<div class="card-img-placeholder">🪜</div>`;
+
+      return `
+        <a class="article-card" href="articles/${escapeHtml(a.id)}.html">
+          ${imgHtml}
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-cat">${escapeHtml(a.category)}</span>
+              <span class="card-date">${formatDate(a.date)}</span>
+            </div>
+            <div class="card-title">${escapeHtml(a.title)}</div>
+            <div class="card-summary">${escapeHtml(a.summary)}</div>
+            <div class="card-arrow">続きを読む →</div>
+          </div>
+        </a>
+      `;
+    }).join('');
+  }
+
+  buildFilters();
+  renderList('all');
+</script>
+</body>
+</html>

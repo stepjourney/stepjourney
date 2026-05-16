@@ -453,7 +453,7 @@
     const photoNames = (spot.images && spot.images.photos) ? spot.images.photos : [];
     let imgHTML = `<span class="spot-card-img-placeholder">写真準備中</span>`;
     if (photoNames.length > 0) {
-      const url = await resolveImg(photoNames[0]);
+      const url = await resolveImg(photoNames[1] ?? photoNames[0]);
       if (url) imgHTML = `<img src="${url}" alt="${spot.name}" style="width:100%;height:100%;object-fit:cover;display:block;">`;
     }
     const firstAccess = spot.access && spot.access.length > 0 ? spot.access[0] : null;

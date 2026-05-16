@@ -242,8 +242,14 @@ const spotsData = [
     ],
     "caution": "",
     "images": {
-      "photos": [],
-      "maps": []
+      "photos": [
+        "S007-1",
+        "S007-2",
+        "S007-3"
+      ],
+      "maps": [
+        "S007-map1"
+      ]
     },
     "history": [
       {

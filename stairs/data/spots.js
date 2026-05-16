@@ -226,7 +226,7 @@ const spotsData = [
     "id": "S007",
     "disabled": 0,
     "name": "片倉城跡公園の階段",
-    "steps": "約100",
+    "steps": "68",
     "elevation_diff": "",
     "address": "",
     "prefecture": "東京都",

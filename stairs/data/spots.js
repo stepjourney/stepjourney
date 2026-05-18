@@ -8,7 +8,7 @@ const spotsData = [
     "disabled": 0,
     "name": "東京タワーの外階段",
     "steps": "600",
-    "elevation_diff": "",
+    "elevation_diff": "約150m",
     "address": "東京都港区芝公園4-2-8",
     "prefecture": "東京都",
     "access": [
@@ -45,7 +45,7 @@ const spotsData = [
     "disabled": 0,
     "name": "多摩川台公園の階段",
     "steps": "103",
-    "elevation_diff": "",
+    "elevation_diff": "約15m",
     "address": "東京都大田区田園調布1-57付近",
     "prefecture": "東京都",
     "access": [
@@ -83,7 +83,7 @@ const spotsData = [
     "disabled": 0,
     "name": "亀塚公園の階段",
     "steps": "136",
-    "elevation_diff": "",
+    "elevation_diff": "約19m",
     "address": "東京都港区三田4-17-20",
     "prefecture": "東京都",
     "access": [
@@ -120,7 +120,7 @@ const spotsData = [
     "disabled": 0,
     "name": "愛宕神社の出世の石段",
     "steps": 86,
-    "elevation_diff": "",
+    "elevation_diff": "約17m",
     "address": "東京都港区愛宕1-5-3",
     "prefecture": "東京都",
     "access": [
@@ -418,7 +418,7 @@ const spotsData = [
     "disabled": 0,
     "name": "巨人への道",
     "steps": 283,
-    "elevation_diff": "",
+    "elevation_diff": "約45m",
     "address": "東京都稲城市矢野口4019",
     "prefecture": "東京都",
     "access": [

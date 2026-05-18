@@ -593,10 +593,10 @@
   // ブログ記事をランダムで最大3件カード表示
   function renderBlogCards() {
     const section = document.getElementById('blog-section');
-    if (!blogArticles || blogArticles.length === 0) return;
+    if (!articles || articles.length === 0) return;
 
     // ランダムシャッフルして最大3件
-    const shuffled = [...blogArticles].sort(() => Math.random() - 0.5);
+    const shuffled = [...articles].sort(() => Math.random() - 0.5);
     const picked = shuffled.slice(0, 3);
 
     document.getElementById('blog-cards').innerHTML = picked.map(a => {

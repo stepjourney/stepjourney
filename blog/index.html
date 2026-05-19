@@ -5,15 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>階段・石段体験ブログ - 段旅 StepJourney</title>
 <meta name="description" content="全国の階段・石段を実際に登った体験記ブログ。段数・所要時間・きつさを正直にレポートします。">
-
-<!-- 自分のアクセス除外フラグの設定 -->
-<script>
-  if (new URLSearchParams(window.location.search).get('notrack') === '1') {
-    localStorage.setItem('ga_exclude', 'true');
-    alert('このデバイスはGA4除外に設定されました');
-  }
-</script>
-
+  
 <!-- GA4（除外フラグがない場合のみ読み込む） -->
 <script>
   if (localStorage.getItem('ga_exclude') !== 'true') {

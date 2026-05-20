@@ -25,6 +25,6 @@ const articles = [
     date: "2026-05-14",
     category: "体験談",
     summary: "稲城市にある読売ジャイアンツゆかりの283段。オレンジの手すりにジャビット君の応援、頂上の銀色の看板と眺望まで、ジャイアンツらしさ全開の石段を昼間に登ってきました。",
-    thumbnail: "images/A012-1.png"
+    thumbnail: "images/A012-1.jpg"
   }
 ];

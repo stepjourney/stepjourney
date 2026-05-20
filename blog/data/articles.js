@@ -17,7 +17,7 @@ const articles = [
     date: "2026-05-14",
     category: "体験談",
     summary: "大田区田園調布にある多摩川台公園の103段。立派な石段と石碑、登るにつれ喧騒が消えて小鳥のさえずりが聞こえる、都会のオアシスのような階段を昼間に登ってきました。",
-    thumbnail: "images/A006-1.jpg"
+    thumbnail: "images/A002-1.jpg"
   },
   {
     id: "A012",

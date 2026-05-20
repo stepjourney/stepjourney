@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【体験談】東京都大田区「多摩川台公園の階段」103段を登ってみた | 石碑がカッコよく、登るほど静かになる都会のオアシス - 段旅 StepJourney</title>
+<meta name="description" content="大田区田園調布にある多摩川台公園の103段。立派な石段と「大田区立多摩川台公園」の石碑、登るにつれ喧騒が消えて小鳥のさえずりが聞こえる、都会のオアシスのような階段を昼間に登ってきました。">
+
+<!-- GA4（除外フラグがない場合のみ読み込む） -->
+<script>
+  if (localStorage.getItem('ga_exclude') !== 'true') {
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-FC6FWPNHRK';
+    document.head.appendChild(script);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FC6FWPNHRK');
+  }
+</script>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ai:        #1b3a6b;
+    --ai-mid:    #2d5a9e;
+    --ai-light:  #e8eef7;
+    --stone-bg:  #f7f5f0;
+    --stone-bd:  #ddd8d0;
+    --gold:      #b8962e;
+    --text-dark: #1a1a2e;
+    --text-mid:  #4a4a6a;
+    --text-mute: #8888aa;
+    --white:     #ffffff;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+    background: var(--stone-bg);
+    color: var(--text-dark);
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+  }
+
+  header {
+    background: var(--ai);
+    padding: 14px 16px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo { color: #fff; font-size: 20px; font-weight: 600; letter-spacing: 0.04em; }
+  .logo-en { color: rgba(255,255,255,0.5); font-size: 10px; font-weight: 400; letter-spacing: 0.1em; margin-top: 1px; }
+  .logo-link { text-decoration: none; display: block; }
+  header nav { display: flex; gap: 12px; align-items: center; }
+  header nav a { color: rgba(255,255,255,0.8); font-size: 12px; text-decoration: none; }
+  .lang-btn {
+    font-size: 11px;
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 5px;
+    padding: 3px 9px;
+    color: rgba(255,255,255,0.8);
+    background: transparent;
+    cursor: pointer;
+  }
+
+  /* パンくず */
+  .breadcrumb {
+    padding: 10px 16px;
+    font-size: 12px;
+    color: var(--text-mute);
+    background: var(--stone-bg);
+    border-bottom: 1px solid var(--stone-bd);
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .breadcrumb a { color: var(--text-mute); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--text-mid); }
+  .breadcrumb-sep { color: #ccc; }
+  .breadcrumb-current { color: var(--text-mid); }
+
+  /* 記事ヘッダー */
+  .article-hdr {
+    background: var(--ai);
+    padding: 22px 16px 24px;
+  }
+  .article-meta {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .article-cat {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .article-date { font-size: 12px; color: rgba(255,255,255,0.45); }
+  .article-title {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.45;
+  }
+
+  /* 記事本文 */
+  .article-body {
+    background: var(--white);
+    margin: 14px 12px;
+    border-radius: 13px;
+    border: 1px solid var(--stone-bd);
+    padding: 20px 18px;
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--text-dark);
+  }
+  .article-body p {
+    margin-bottom: 1.2em;
+  }
+  .article-body p:last-child { margin-bottom: 0; }
+
+  /* 訪問情報バッジ */
+  .visit-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 1.4em;
+    padding-bottom: 1.2em;
+    border-bottom: 1px solid var(--stone-bd);
+  }
+  .visit-badge {
+    font-size: 12px;
+    background: var(--stone-bg);
+    border: 1px solid var(--stone-bd);
+    border-radius: 20px;
+    padding: 3px 10px;
+    color: var(--text-mid);
+  }
+
+  .section-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-mute);
+    letter-spacing: 0.06em;
+    margin: 1.4em 0 0.7em;
+    padding-left: 8px;
+    border-left: 3px solid var(--gold);
+  }
+
+  /* 記事内写真 */
+  .article-img {
+    margin: 1.4em -18px;
+    overflow: hidden;
+  }
+  .article-img img {
+    width: 100%;
+    display: block;
+    max-height: 320px;
+    object-fit: cover;
+  }
+  .article-img figcaption {
+    font-size: 11px;
+    color: var(--text-mute);
+    text-align: center;
+    padding: 6px 12px 0;
+    line-height: 1.5;
+  }
+
+  /* 前後記事ナビ */
+  .article-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 0 12px 16px;
+  }
+  .article-nav a {
+    background: var(--white);
+    border: 1px solid var(--stone-bd);
+    border-radius: 11px;
+    padding: 12px 14px;
+    text-decoration: none;
+    color: var(--text-mid);
+    font-size: 12px;
+    display: block;
+  }
+  .article-nav-label { font-size: 10px; color: var(--text-mute); margin-bottom: 4px; }
+  .article-nav-title { font-size: 13px; font-weight: 600; color: var(--text-dark); line-height: 1.4; }
+  .article-nav .next { text-align: right; }
+  .article-nav .empty { visibility: hidden; }
+
+  /* 戻るボタン */
+  .back-btn {
+    display: block;
+    margin: 0 12px 14px;
+    text-align: center;
+    padding: 12px;
+    border: 1px solid var(--stone-bd);
+    border-radius: 10px;
+    font-size: 14px;
+    color: var(--text-mid);
+    text-decoration: none;
+    background: var(--white);
+  }
+
+  /* 階段スポットへのリンク */
+  .stairs-link {
+    display: block;
+    margin: 0 12px 20px;
+    padding: 14px 16px;
+    background: var(--ai-light);
+    border: 1px solid #c0d0e8;
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--ai);
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+  }
+  .stairs-link span {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-mid);
+    display: block;
+    margin-top: 3px;
+  }
+
+  footer {
+    background: var(--ai);
+    padding: 18px 16px;
+    text-align: center;
+    font-size: 11px;
+    color: rgba(255,255,255,0.35);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <a href="../../stairs/index.html" class="logo-link">
+      <div class="logo">段旅</div>
+      <div class="logo-en">StepJourney</div>
+    </a>
+  </div>
+  <nav>
+    <a href="../../stairs/index.html">階段・石段スポットを探す</a>
+    <button class="lang-btn" onclick="alert('英語版は準備中です。')">EN</button>
+  </nav>
+</header>
+
+<div class="breadcrumb">
+  <a href="../../stairs/index.html">段旅</a>
+  <span class="breadcrumb-sep">&gt;</span>
+  <a href="../index.html">階段・石段スポット体験ブログ</a>
+  <span class="breadcrumb-sep">&gt;</span>
+  <span class="breadcrumb-current">東京都大田区「多摩川台公園の階段」103段</span>
+</div>
+
+<div class="article-hdr">
+  <div class="article-meta">
+    <span class="article-cat">体験談</span>
+    <span class="article-date">2026年5月14日</span>
+  </div>
+  <div class="article-title">【体験談】東京都大田区「多摩川台公園の階段」103段を登ってみた | 石碑がカッコよく、登るほど静かになる都会のオアシス</div>
+</div>
+
+<div class="article-body">
+
+  <!-- リード文 -->
+  <div class="visit-info">
+    <span class="visit-badge">📅 2026年5月11日訪問</span>
+    <span class="visit-badge">☀️ 晴れ、昼間</span>
+    <span class="visit-badge">🌿 清々しい陽気</span>
+    <span class="visit-badge">⏱️ 登り1分30秒</span>
+    <span class="visit-badge">💰 無料</span>
+  </div>
+
+  <p>東京都大田区田園調布にある多摩川台公園の石段は、103段のしっかりとした造りが印象的な階段です。東急多摩川線の多摩川駅からほど近く、入口は交通量の多い道路に面していますが、登るにつれて公園の緑の中に入っていき、驚くほど静かな空間へと変わっていきます。都会の中のオアシスのような、そんな不思議な魅力のある石段です。</p>
+
+  <!-- 基本情報 -->
+  <div class="section-title">階段・石段スポット基本情報</div>
+  <p style="margin-top:0.6em;margin-bottom:1.2em;">
+    <a href="../../stairs/spot/S006.html" style="color:var(--ai-mid);font-size:13px;font-weight:600;">▶ 住所、最寄り駅などは「階段・石段スポット基本情報」へ</a>
+  </p>
+
+  <div class="section-title">アクセス</div>
+  <p>東急多摩川線「多摩川駅」下車、徒歩約5分。駅から多摩川台公園の方向へ進むと、道路に面した石段の入口が見えてきます。</p>
+
+  <div class="section-title">注意点・持ち物</div>
+  <p>石段はしっかりとした造りで歩きやすいですが、グリップのある靴がおすすめです。途中の踊り場にベンチがあるので、水分補給などの休憩をはさみながらマイペースに登れます。雨上がりは石段が滑りやすくなるのでご注意ください。</p>
+
+  <!-- 行ってみた -->
+  <div class="section-title">行ってみた</div>
+
+  <p>入口に着くと、まず目を引くのが「大田区立多摩川台公園」と刻まれた立派な石碑です。その隣にそびえる103段の石段も、ひとつひとつの段がしっかりと組まれていて、見るからに堂々とした佇まい。登り始める前から、なんだかテンションが上がります。</p>
+
+  <figure class="article-img">
+    <img src="../images/A006-1.jpg" alt="多摩川台公園の石碑と石段の入口" loading="lazy">
+    <figcaption>「大田区立多摩川台公園」の石碑と石段。この組み合わせがカッコいい。</figcaption>
+  </figure>
+
+  <p>入口は車がひっきりなしに通る道路沿いにあり、最初はやや騒がしい印象があります。でも一歩踏み出して登り始めると、数段ごとに周囲の音が遠くなっていく感覚があります。公園の木々が道路の喧騒を遮るように茂っていて、気づけばエンジン音はほとんど聞こえなくなっていました。</p>
+
+  <figure class="article-img">
+    <img src="../images/A006-2.jpg" alt="多摩川台公園の石段を登っている途中の様子" loading="lazy">
+    <figcaption>登るにつれて、道路の喧騒が嘘のように消えていく。</figcaption>
+  </figure>
+
+  <p>中腹あたりに踊り場があり、ベンチが置かれています。ここに座って少し休憩しながら周りを見渡すと、緑に包まれた静かな公園の空気をたっぷり感じられます。小鳥のさえずりもよく聞こえて、「さっきまで大通り沿いにいたのか」と不思議な気持ちになりました。</p>
+
+  <figure class="article-img">
+    <img src="../images/A006-3.jpg" alt="多摩川台公園の石段途中にある踊り場とベンチ" loading="lazy">
+    <figcaption>踊り場のベンチ。小鳥のさえずりが聞こえる、静かな休憩スポット。</figcaption>
+  </figure>
+
+  <p>頂上まで登り切ると、多摩川台公園の緑の中に出ます。道路沿いのあの喧騒が遠い世界のことのように感じられて、103段を登っただけで都会のど真ん中からオアシスへ来てしまったような感覚がありました。入口と頂上のギャップが、この石段の一番の魅力かもしれません。</p>
+
+  <figure class="article-img">
+    <img src="../images/A006-4.jpg" alt="多摩川台公園の石段を登り切った頂上付近の緑" loading="lazy">
+    <figcaption>登り切った先は、緑豊かな公園の世界。</figcaption>
+  </figure>
+
+  <p>多摩川駅からのアクセスも良く、サクッと立ち寄れるスポットです。あの入口と頂上のギャップを、ぜひ体感しに来てみてください。</p>
+
+</div>
+
+<!-- 前後記事ナビ -->
+<div class="article-nav">
+  <span class="empty"></span>
+  <span class="empty"></span>
+</div>
+
+<a class="back-btn" href="../index.html">&#8592; ブログ一覧に戻る</a>
+
+<a class="stairs-link" href="../../stairs/index.html">
+  階段・石段スポットを探す
+  <span>全国の階段・石段スポットデータベース</span>
+</a>
+
+<footer>&copy; 2026 段旅 StepJourney</footer>
+
+</body>
+</html>

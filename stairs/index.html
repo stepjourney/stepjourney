@@ -587,8 +587,7 @@
     if (!articles || articles.length === 0) return;
 
     // ランダムシャッフルして最大3件
-    const shuffled = [...articles].sort(() => Math.random() - 0.5);
-    const picked = shuffled.slice(0, 3);
+    const picked = [...articles].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3);
 
     document.getElementById('blog-cards').innerHTML = picked.map(a => {
       const imgHtml = a.thumbnail

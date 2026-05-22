@@ -260,7 +260,6 @@
     color: rgba(255,255,255,0.35);
   }
 </style>
-<script src="data/articles.js"></script>
 </head>
 <body>
 
@@ -302,6 +301,7 @@
 
 <footer>&copy; 2026 段旅 StepJourney</footer>
 
+<script src="data/articles.js"></script>
 <script>
   // articles は data/articles.js で定義済み
 
@@ -343,7 +343,8 @@
 
   function renderList(cat) {
     const list = document.getElementById('article-list');
-    const filtered = cat === 'all' ? articles : articles.filter(a => a.category === cat);
+    const filtered = (cat === 'all' ? articles : articles.filter(a => a.category === cat))
+      .slice().sort((a, b) => b.date.localeCompare(a.date));
 
     if (filtered.length === 0) {
       list.innerHTML = '<div class="no-articles">記事がありません。</div>';

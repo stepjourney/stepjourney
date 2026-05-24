@@ -270,6 +270,12 @@ def generate_html(spot):
 <title>{esc(name)} - 段旅 StepJourney</title>
 <meta name="description" content="{esc(meta_desc)}">
 <link rel="canonical" href="https://stepjourney.github.io/stepjourney/stairs/spot/{sid}.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{esc(name)} - 段旅 StepJourney">
+<meta property="og:description" content="{esc(meta_desc)}">
+<meta property="og:url" content="https://stepjourney.github.io/stepjourney/stairs/spot/{sid}.html">
+<meta property="og:image" content="https://stepjourney.github.io/stepjourney/stairs/images/{photo_names[0] if photo_names else sid + '-1'}.jpg">
+<meta name="twitter:card" content="summary">
 {GA4}
 <style>{CSS}</style>
 </head>

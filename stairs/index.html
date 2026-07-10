@@ -196,7 +196,7 @@
   .spot-card:active { opacity: 0.85; }
   .spot-card-img {
     background: var(--ai-mid);
-    height: 90px;
+    min-height: 90px;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -204,13 +204,16 @@
   }
   .spot-card-img img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
     display: block;
   }
   .spot-card-img-placeholder {
     color: rgba(255,255,255,0.35);
     font-size: 12px;
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .spot-card-body { padding: 13px 14px; }
   .spot-card-name {
@@ -455,7 +458,7 @@
     let imgHTML = `<span class="spot-card-img-placeholder">写真準備中</span>`;
     if (photoNames.length > 0) {
       const url = await resolveImg(photoNames[1] ?? photoNames[0]);
-      if (url) imgHTML = `<img src="${url}" alt="${spot.name}" style="width:100%;height:100%;object-fit:cover;display:block;">`;
+      if (url) imgHTML = `<img src="${url}" alt="${spot.name}" style="width:100%;height:auto;display:block;">`;
     }
     const firstAccess = spot.access && spot.access.length > 0 ? spot.access[0] : null;
     const stationText = firstAccess
